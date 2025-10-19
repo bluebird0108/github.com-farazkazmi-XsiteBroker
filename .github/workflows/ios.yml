@@ -1,4 +1,4 @@
-name: iOS Build & Auto IPA Upload
+name: iOS Build & Auto IPA Upload (with Cache)
 
 on:
   push:
@@ -13,29 +13,30 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      # 1️⃣ Checkout repo
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2️⃣ Set up latest Xcode
       - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest
 
-      # 3️⃣ Navigate to your project folder
-      - name: Navigate to Project Directory
-        run: cd "Final app Xsite /Xsite Broker/Xsite final with etc" && ls
+      - name: Cache Swift Package Dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData
+            ~/Library/Caches/org.swift.swiftpm
+            ~/.swiftpm
+          key: ${{ runner.os }}-swiftpm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-swiftpm-
 
-      # 4️⃣ Clean and resolve Swift Packages
       - name: Resolve Swift Packages
         run: |
           cd "Final app Xsite /Xsite Broker/Xsite final with etc"
-          rm -rf ~/Library/Developer/Xcode/DerivedData
-          xcodebuild -resolvePackageDependencies \
-                     -scheme "Xsite Broker"
+          xcodebuild -resolvePackageDependencies -scheme "Xsite Broker"
 
-      # 5️⃣ Build app for simulator
       - name: Build Xsite Broker App
         run: |
           cd "Final app Xsite /Xsite Broker/Xsite final with etc"
@@ -44,7 +45,6 @@ jobs:
                      -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
                      CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
-      # 6️⃣ Archive release build
       - name: Archive App
         run: |
           cd "Final app Xsite /Xsite Broker/Xsite final with etc"
@@ -54,7 +54,6 @@ jobs:
                      -archivePath build/XsiteBroker.xcarchive archive \
                      CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
-      # 7️⃣ Export IPA or fallback ZIP
       - name: Export IPA
         run: |
           cd "Final app Xsite /Xsite Broker/Xsite final with etc"
@@ -68,7 +67,6 @@ jobs:
             find build/XsiteBroker.xcarchive -name "*.app" -exec zip -r build/XsiteBroker.zip {} \;
           fi
 
-      # 8️⃣ Upload IPA artifact
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -76,3 +74,11 @@ jobs:
           path: |
             Final app Xsite /Xsite Broker/Xsite final with etc/build/XsiteBroker.ipa
             Final app Xsite /Xsite Broker/Xsite final with etc/build/XsiteBroker.zip
+
+      - name: Auto-Commit Dependency Updates
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "Auto-update Swift Packages"
+          title: "Auto-Update: Swift Dependencies"
+          branch: auto-update-dependencies
+
