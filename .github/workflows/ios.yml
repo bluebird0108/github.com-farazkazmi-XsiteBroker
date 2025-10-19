@@ -40,13 +40,15 @@ jobs:
       - name: 📱 List available simulators
         run: xcrun simctl list devices
 
-      - name: 🏗 Build app on iPhone simulators
-        run: |
-          echo "Building app on all available simulators..."
-          xcodebuild clean build \
-          -scheme "XsiteBroker" \
-          -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
-          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - - name: Build App
+  run: |
+    echo "Building app on all available simulators..."
+    xcodebuild clean build \
+      -scheme "XsiteBroker" \
+      -destination "platform=iOS Simulator,name=iPhone 17 Pro,OS=latest" \
+      -project "XsiteBroker/XsiteBroker.xcodeproj" \
+      CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
 
       - name: 🧪 Run Unit Tests
         run: |
