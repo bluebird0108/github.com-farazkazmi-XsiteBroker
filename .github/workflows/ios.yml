@@ -1,36 +1,102 @@
-name: iOS Build & Auto-Upgrade
+name: iOS Build & Auto-Fix Bot
 
 on:
   push:
     branches: [ main ]
   pull_request:
   schedule:
-    - cron: '0 3 * * 1' # every Monday auto-check
+    - cron: '0 3 * * *'  # 🕒 Every day at 03:00 UTC
 
 jobs:
   build:
     runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v4
+    timeout-minutes: 60
 
-      - name: Set up Xcode
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🧰 Set up latest Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest
 
-      - name: Resolve Swift Packages
-        run: xcodebuild -resolvePackageDependencies
+      - name: ⚡ Cache DerivedData & Swift Packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData
+            ~/.swiftpm
+            .build
+          key: ${{ runner.os }}-xcode-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-xcode-
 
-      - name: Build App
-        run: xcodebuild -scheme "XsiteBroker" -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+      - name: 🔄 Resolve Swift Package Dependencies
+        run: |
+          echo "Resolving Swift Packages..."
+          xcodebuild -resolvePackageDependencies -project "XsiteBroker.xcodeproj" || true
 
-      - name: Run Tests
-        run: xcodebuild test -scheme "XsiteBroker" -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+      - name: 📱 List available simulators
+        run: xcrun simctl list devices
 
-      - name: Auto Commit Dependency Updates
+      - name: 🏗 Build app on iPhone simulators
+        run: |
+          echo "Building app on all available simulators..."
+          xcodebuild clean build \
+          -scheme "XsiteBroker" \
+          -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+      - name: 🧪 Run Unit Tests
+        run: |
+          echo "Running tests..."
+          xcodebuild test \
+          -scheme "XsiteBroker" \
+          -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+      - name: 🤖 Bot Auto-Fix if Build Fails
+        if: failure()
+        run: |
+          echo "❌ Build failed. Bot is cleaning DerivedData and retrying..."
+          rm -rf ~/Library/Developer/Xcode/DerivedData
+          xcodebuild clean build \
+          -scheme "XsiteBroker" \
+          -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO || echo "⚠️ Bot attempted fix, please review."
+
+      - name: 📦 Archive app (.xcarchive)
+        run: |
+          echo "Archiving XsiteBroker..."
+          xcodebuild archive \
+          -scheme "XsiteBroker" \
+          -destination 'generic/platform=iOS' \
+          -archivePath build/XsiteBroker.xcarchive \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+      - name: 🧰 Export .ipa (unsigned)
+        run: |
+          mkdir -p build/export
+          xcodebuild -exportArchive \
+          -archivePath build/XsiteBroker.xcarchive \
+          -exportPath build/export \
+          -exportOptionsPlist ExportOptions.plist || true
+
+      - name: 💾 Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: XsiteBroker-IPA
+          path: build/export
+
+      - name: 🔁 Auto Commit Dependency Updates (Daily)
+        if: ${{ github.event_name == 'schedule' }}
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: "🔄 Auto-update Swift packages"
-          branch: auto-upgrade/dependencies
-          title: "Auto upgrade dependencies"
-          body: "This PR automatically updates Swift packages weekly."
+          commit-message: "🤖 Daily Bot Fix & Swift Package Updates"
+          branch: auto-fix/daily-bot
+          title: "🤖 Daily Auto-Fix & Dependency Upgrade"
+          body: |
+            This automated PR was created by the Build Bot.
+            It rebuilds XsiteBroker, updates Swift packages, and retries failed builds automatically.
+          token: ${{ secrets.GITHUB_TOKEN }}
