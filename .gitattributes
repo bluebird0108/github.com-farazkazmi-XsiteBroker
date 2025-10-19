@@ -1,0 +1,11 @@
+# Make Xcode project files merge-safe
+*.pbxproj merge=union
+*.xcworkspace merge=union
+*.xcscheme merge=union
+*.plist merge=union
+
+# Prevent unwanted binary merges
+*.png binary
+*.jpg binary
+*.xcuserstate binary
+
