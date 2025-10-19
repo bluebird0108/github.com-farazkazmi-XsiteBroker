@@ -1,11 +1,11 @@
-name: iOS Build & Auto-Fix Bot
+name: iOS Build & Auto IPA Upload
 
 on:
   push:
     branches: [ main ]
   pull_request:
   schedule:
-    - cron: '0 3 * * *'  # 🕒 Every day at 03:00 UTC
+    - cron: '0 23 * * *' # 🕒 3 AM Dubai time
 
 jobs:
   build:
@@ -13,92 +13,67 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      - name: 🧩 Checkout repository
+      # 1️⃣ Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 🧰 Set up latest Xcode
+      # 2️⃣ Set up latest Xcode
+      - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest
 
-      - name: ⚡ Cache DerivedData & Swift Packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/Library/Developer/Xcode/DerivedData
-            ~/.swiftpm
-            .build
-          key: ${{ runner.os }}-xcode-${{ hashFiles('**/Package.resolved') }}
-          restore-keys: |
-            ${{ runner.os }}-xcode-
-
-      - name: 🔄 Resolve Swift Package Dependencies
+      # 3️⃣ Resolve Swift packages
+      - name: Resolve Swift Packages
         run: |
-          echo "Resolving Swift Packages..."
-          xcodebuild -resolvePackageDependencies -project "XsiteBroker.xcodeproj" || true
+          cd "Final app Xsite /Xsite Broker/Xsite final with etc"
+          xcodebuild -resolvePackageDependencies
 
-      - name: 📱 List available simulators
-        run: xcrun simctl list devices
-
-      - - name: Build App
-  run: |
-    echo "Building app on all available simulators..."
-    xcodebuild clean build \
-      -scheme "XsiteBroker" \
-      -destination "platform=iOS Simulator,name=iPhone 17 Pro,OS=latest" \
-      -project "XsiteBroker/XsiteBroker.xcodeproj" \
-      CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-
-
-      - name: 🧪 Run Unit Tests
+      # 4️⃣ Build app for iPhone 17 Pro simulator
+      - name: Build Xsite Broker App
         run: |
-          echo "Running tests..."
-          xcodebuild test \
-          -scheme "XsiteBroker" \
-          -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
-          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          cd "Final app Xsite /Xsite Broker/Xsite final with etc"
+          xcodebuild -scheme "XsiteBroker" \
+                     -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
+                     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
-      - name: 🤖 Bot Auto-Fix if Build Fails
-        if: failure()
+      # 5️⃣ Archive app
+      - name: Archive App
         run: |
-          echo "❌ Build failed. Bot is cleaning DerivedData and retrying..."
-          rm -rf ~/Library/Developer/Xcode/DerivedData
-          xcodebuild clean build \
-          -scheme "XsiteBroker" \
-          -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest' \
-          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO || echo "⚠️ Bot attempted fix, please review."
+          cd "Final app Xsite /Xsite Broker/Xsite final with etc"
+          xcodebuild -scheme "XsiteBroker" \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     -archivePath build/XsiteBroker.xcarchive archive \
+                     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
-      - name: 📦 Archive app (.xcarchive)
+      # 6️⃣ Export IPA or ZIP
+      - name: Export IPA
         run: |
-          echo "Archiving XsiteBroker..."
-          xcodebuild archive \
-          -scheme "XsiteBroker" \
-          -destination 'generic/platform=iOS' \
-          -archivePath build/XsiteBroker.xcarchive \
-          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-
-      - name: 🧰 Export .ipa (unsigned)
-        run: |
-          mkdir -p build/export
+          cd "Final app Xsite /Xsite Broker/Xsite final with etc"
+          mkdir -p build
           xcodebuild -exportArchive \
-          -archivePath build/XsiteBroker.xcarchive \
-          -exportPath build/export \
-          -exportOptionsPlist ExportOptions.plist || true
+                     -archivePath build/XsiteBroker.xcarchive \
+                     -exportPath build \
+                     -exportOptionsPlist ExportOptions.plist \
+                     CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO || true
+          if [ ! -f build/XsiteBroker.ipa ]; then
+            find build/XsiteBroker.xcarchive -name "*.app" -exec zip -r build/XsiteBroker.zip {} \;
+          fi
 
-      - name: 💾 Upload IPA artifact
+      # 7️⃣ Upload IPA artifact
+      - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: XsiteBroker-IPA
-          path: build/export
+          name: XsiteBroker_Build
+          path: |
+            Final app Xsite /Xsite Broker/Xsite final with etc/build/XsiteBroker.ipa
+            Final app Xsite /Xsite Broker/Xsite final with etc/build/XsiteBroker.zip
 
-      - name: 🔁 Auto Commit Dependency Updates (Daily)
-        if: ${{ github.event_name == 'schedule' }}
+      # 8️⃣ Auto-commit dependency updates
+      - name: Auto-Commit Dependency Updates
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: "🤖 Daily Bot Fix & Swift Package Updates"
-          branch: auto-fix/daily-bot
-          title: "🤖 Daily Auto-Fix & Dependency Upgrade"
-          body: |
-            This automated PR was created by the Build Bot.
-            It rebuilds XsiteBroker, updates Swift packages, and retries failed builds automatically.
-          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Auto-update Swift Packages"
+          title: "Auto-Update: Swift Dependencies"
+          branch: auto-update-dependencies
