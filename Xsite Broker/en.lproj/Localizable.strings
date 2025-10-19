@@ -1,0 +1,291 @@
+/* en.lproj/Localizable.strings
+ 
+  Localizable.strings
+  Xsite Broker
+
+  Created by Faraz on 13/10/2025.
+  
+*/
+"app_title" = "XSITE Real Estate";
+"tagline" = "Find your perfect property in the UAE.";
+"nav_properties" = "Properties";
+"nav_developers" = "Developers";
+"nav_contact" = "Contact";
+"nav_login" = "Login";
+"quick_actions" = "Quick actions";
+"qa_mortgage" = "Mortgage tools";
+"qa_services" = "Services";
+"properties_title" = "Properties";
+"properties_subtitle" = "Browse featured properties and latest listings.";
+"developers_header" = "Top Developers";
+"dev_emaar" = "Emaar";
+"dev_damac" = "DAMAC";
+"dev_nakheel" = "Nakheel";
+"dev_meraas" = "Meraas";
+"company_name" = "XSITE Real Estate";
+"contact_tagline" = "We’re here to help you 7 days a week.";
+"btn_call" = "Call";
+"btn_email" = "Email";
+"btn_website" = "Website";
+"tools_title" = "Official calculators";
+"tool_rera" = "RERA Rent Index";
+"tool_procedure" = "Procedure & Fees Guide";
+"tool_mortgage" = "Mortgage Calculator";
+"tools_note" = "These links open official or trusted sources.";
+"credit_by" = "Crafted by";
+"credit_site" = "Shah App";
+"login_title" = "Sign in";
+"login_subtitle" = "Secure access to your account.";
+"tools_header" = "Mortgage & Fees Tools";
+"tool_mortgage_main" = "Open Mortgage Calculator";
+"nav_tools" = "Tools";
+"svc_offplan_t" = "Off-plan";
+"svc_offplan_s" = "Buy properties under development";
+"svc_ready_t" = "Ready properties";
+"svc_ready_s" = "Move-in ready homes";
+"svc_mortgage_t" = "Mortgage";
+"svc_mortgage_s" = "Financing assistance";
+"svc_val_t" = "Valuation";
+"svc_val_s" = "Property valuation services";
+"svc_mgmt_t" = "Property management";
+"svc_mgmt_s" = "End-to-end management";
+"svc_agent_t" = "Talk to an agent";
+"svc_agent_s" = "Chat on WhatsApp";
+"svc_website" = "Visit our website";
+"nav_services" = "Services";
+"search_placeholder" = "Search properties, developers, communities";
+"filter_type" = "Type";
+"ptype_all" = "All";
+"ptype_offplan" = "Off-plan";
+"ptype_ready" = "Ready";
+"no_results" = "No results found";
+"sqft" = "sqft";
+"listed_on" = "Listed on";
+"details_placeholder" = "More details will be available soon.";
+"home.title" = "Home";
+"browse.title" = "Browse";
+"developers.title" = "Dubai Developers";
+"team.title" = "Team";
+"more.title" = "More";
+"search.placeholder" = "Search properties, areas, developers…";
+"ready" = "Ready";
+"offplan" = "Off Plan";
+"rent" = "Rent";
+"mortgage" = "Mortgage";
+"reraIndex" = "RERA Index";
+"registerInterest" = "Register Interest";
+"registerComplaint" = "Register Complaint";
+"googleReviews" = "Google Reviews";
+"viewLatestFeedback" = "View latest customer feedback";
+"employeeLogin" = "Employee Login";
+"home.title" = "Home";
+"browse.title" = "Browse";
+"developers.title" = "Developers";
+"team.title" = "Team";
+"more.title" = "More";
+"home.title" = "Home";
+"home.subtitle" = "Dubai • Ready • Off-Plan • Rent";
+"search.placeholder" = "Search properties, areas, developers…";
+"ready" = "Ready Properties";
+"offplan" = "Off-Plan Launches";
+"rent" = "Homes for Rent";
+"googleReviews" = "Google Reviews";
+"viewLatestFeedback" = "View latest customer feedback";
+"company.info" = "Company";
+"visit.website" = "Visit Website";
+"contact.company" = "Contact Xsite";
+
+"team.title" = "Team";
+"meet.team" = "Meet our Team";
+"agent.name" = "Agent Name";
+"agent.role" = "Property Consultant";
+"call" = "Call";
+"employeeLogin" = "Employee Login";
+"Language" = "Language";
+"Xsite Real Estate Brokers" = "Xsite Real Estate Brokers";
+"Dubai’s Premier Properties" = "Dubai’s Premier Properties";
+"Search by title or location" = "Search by title or location";
+"Min Price" = "Min Price";
+"Max Price" = "Max Price";
+"Favorites" = "Favorites";
+"Properties" = "Properties";
+"app_title" = "Xsite Real Estate";
+"tagline" = "Find your perfect property in the UAE.";
+"nav_properties" = "Properties";
+"nav_developers" = "Developers";
+"nav_contact" = "Contact";
+"nav_login" = "Login";
+"quick_actions" = "Quick Actions";
+"qa_mortgage" = "Mortgage Calculator";
+"qa_services" = "Services";
+"properties_title" = "Properties";
+"properties_subtitle" = "Browse featured and latest property listings.";
+"developers_header" = "Top Developers";
+"dev_emaar" = "Emaar";
+"dev_damac" = "Damac";
+"dev_nakheel" = "Nakheel";
+"dev_meraas" = "Meraas";
+"company_name" = "Xsite Real Estate";
+"contact_tagline" = "We're here for you every day.";
+"btn_call" = "Call";
+"btn_email" = "Email";
+"btn_website" = "Website";
+"tools_title" = "Official Calculators";
+"tool_rera" = "RERA Rental Index";
+"tool_procedure" = "Procedure & Fees Guides";
+"tool_mortgage" = "Mortgage Calculator";
+"tools_note" = "These links open official or trusted sources.";
+"credit_by" = "Developed by";
+"credit_site" = "Shah App";
+"login_title" = "Login";
+"login_subtitle" = "Secure access to your account.";
+"tools_header" = "Finance & Fee Tools";
+"tool_mortgage_main" = "Open Mortgage Calculator";
+"nav_tools" = "Tools";
+"svc_offplan_t" = "Off-plan";
+"svc_offplan_s" = "Buy under construction properties";
+"svc_ready_t" = "Ready";
+"svc_ready_s" = "Move-in ready homes";
+"svc_mortgage_t" = "Mortgage";
+"svc_mortgage_s" = "Mortgage assistance";
+"svc_val_t" = "Valuation";
+"svc_val_s" = "Property valuation services";
+"svc_mgmt_t" = "Property Management";
+"svc_mgmt_s" = "Comprehensive management";
+"svc_agent_t" = "Chat with Agent";
+"svc_agent_s" = "Chat on WhatsApp";
+"svc_website" = "Visit our website";
+"nav_services" = "Services";
+"search_placeholder" = "Search properties, developers, or communities";
+"filter_type" = "Type";
+"ptype_all" = "All";
+"ptype_offplan" = "Off-plan";
+"ptype_ready" = "Ready";
+"no_results" = "No results found";
+"sqft" = "sqft";
+"listed_on" = "Listed On";
+"details_placeholder" = "More details coming soon.";
+"home.title" = "Home";
+"browse.title" = "Browse";
+"developers.title" = "Dubai Developers";
+"team.title" = "Team";
+"more.title" = "More";
+"search.placeholder" = "Search for properties, areas, or developers…";
+"ready" = "Ready";
+"offplan" = "Off-plan";
+"rent" = "Rent";
+"mortgage" = "Mortgage";
+"reraIndex" = "RERA Index";
+"registerInterest" = "Register Interest";
+"registerComplaint" = "Register Complaint";
+"googleReviews" = "Google Reviews";
+"viewLatestFeedback" = "See Customer Feedback";
+"employeeLogin" = "Employee Login";
+"home.subtitle" = "Dubai • Ready • Off-plan • For Rent";
+"ready" = "Ready Properties";
+"offplan" = "Off-plan Projects";
+"rent" = "Properties for Rent";
+"googleReviews" = "Google Reviews";
+"viewLatestFeedback" = "View Latest Reviews";
+"company.info" = "Company";
+"visit.website" = "Visit Website";
+"contact.company" = "Contact Xsite";
+"team.title" = "Team";
+"meet.team" = "Meet Our Team";
+"agent.name" = "Agent Name";
+"agent.role" = "Real Estate Agent";
+"call" = "Call";
+"employeeLogin" = "Employee Login";
+"Language" = "Language";
+"Xsite Real Estate Brokers" = "Xsite Real Estate Brokers";
+"Dubai’s Premier Properties" = "Dubai’s Premier Properties";
+"Search by title or location" = "Search by title or location";
+"Min Price" = "Min Price";
+"Max Price" = "Max Price";
+"Favorites" = "Favorites";
+"Properties" = "Properties";
+// General
+"App by " = "App by ";
+"Faraz Kazmi" = "Faraz Kazmi";
+
+// Top bar
+"Xsite Real Estate Brokers L.L.C" = "Xsite Real Estate Brokers L.L.C";
+"Dubai • Buy • Rent • Off‑Plan" = "Dubai • Buy • Rent • Off‑Plan";
+
+// Tabs
+"Home" = "Home";
+"Rent" = "Rent";
+"Off‑Plan" = "Off‑Plan";
+"Ready" = "Ready";
+
+// Home
+"Welcome to Xsite" = "Welcome to Xsite";
+"Quick Actions" = "Quick Actions";
+"Search" = "Search";
+"Register Interest" = "Register Interest";
+"Developers" = "Developers";
+"Registered Developers" = "Registered Developers";
+"Tap to view all UAE developers." = "Tap to view all UAE developers.";
+"Google Reviews" = "Google Reviews";
+"Read our reviews on Google." = "Read our reviews on Google.";
+"Explore" = "Explore";
+
+// Contact tile and links
+"Contact Us" = "Contact Us";
+"Website" = "Website";
+"Call" = "Call";
+"Location" = "Location";
+"View Our Team" = "View Our Team";
+"Meet the experts" = "Meet the experts";
+"About Xsite" = "About Xsite";
+"Learn about us" = "Learn about us";
+
+// Developers screen
+"UAE Developers" = "UAE Developers";
+"Close" = "Close";
+
+// Property list
+"No Leasing properties yet" = "No Leasing properties yet";
+"No Off‑Plan properties yet" = "No Off‑Plan properties yet";
+"No Ready properties yet" = "No Ready properties yet";
+"Tap + to add your first listing" = "Tap + to add your first listing";
+
+// Property input
+"Add Property" = "Add Property";
+"Basic" = "Basic";
+"Title" = "Title";
+"Category" = "Category";
+"Location" = "Location";
+"Pricing" = "Pricing";
+"Price (AED)" = "Price (AED)";
+"Specs" = "Specs";
+"Bedrooms" = "Bedrooms";
+"Bathrooms" = "Bathrooms";
+"Size" = "Size";
+"Unit" = "Unit";
+"sqft" = "sqft";
+"sqm" = "sqm";
+"Description" = "Description";
+"Save Property" = "Save Property";
+"Cancel" = "Cancel";
+
+// Employee login
+"Employee Login" = "Employee Login";
+"Email" = "Email";
+"Password" = "Password";
+"Sign In" = "Sign In";
+"Signing in…" = "Signing in…";
+"Close" = "Close";
+
+// Notifications
+"Notifications" = "Notifications";
+"New property added in Downtown" = "New property added in Downtown";
+"Your viewing is confirmed" = "Your viewing is confirmed";
+"Mortgage rates updated" = "Mortgage rates updated";
+"System" = "System";
+"Light" = "Light";
+"Dark" = "Dark";
+"Language" = "Language";
+"Appearance" = "Appearance";
+"English" = "English";
+"Arabic" = "Arabic";
