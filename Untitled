@@ -1,0 +1,2612 @@
+diff --git a/Assets./AppState.swift b/Assets./AppState.swift
+new file mode 100644
+index 0000000..74b08ec
+--- /dev/null
++++ b/Assets./AppState.swift
+@@ -0,0 +1,46 @@
++//import SwiftUI
++
++struct AppTheme: Equatable, Sendable {
++    // Follow system by default. Set to .light or .dark to force.
++    var preferredColorScheme: ColorScheme? = nil
++
++    // Accent color for your app. Defaults to the app’s accent color.
++    var accentColor: Color = .accentColor
++
++    mutating func toggleColorScheme() {
++        switch preferredColorScheme {
++        case .some(.light): preferredColorScheme = .dark
++        case .some(.dark): preferredColorScheme = nil // back to system
++        case nil: preferredColorScheme = .light
++        @unknown default: preferredColorScheme = nil
++        }
++    }
++}
++//  AppState.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
++import SwiftUI
++import Observation
++
++@Observable
++final class AppState {
++    var theme = AppTheme()
++    var lang = L10n()
++}
++import Foundation
++
++public struct L10n: Sendable, Equatable {
++    public init() {}
++
++    // Convenience for localized strings if you need it.
++    public func string(_ key: String,
++                       table: String? = nil,
++                       bundle: Bundle = .main,
++                       value: String = "",
++                       comment: String = "") -> String {
++        NSLocalizedString(key, tableName: table, bundle: bundle, value: value, comment: comment)
++    }
++}
+diff --git a/Xsite Broker/Assets.xcassets/Contents.json b/Assets./Assets.xcassets/AppIcons-2/Contents.json
+similarity index 100%
+rename from Xsite Broker/Assets.xcassets/Contents.json
+rename to Assets./Assets.xcassets/AppIcons-2/Contents.json
+diff --git a/Assets./Assets.xcassets/AppIcons-2/playstore.imageset/Contents.json b/Assets./Assets.xcassets/AppIcons-2/playstore.imageset/Contents.json
+new file mode 100644
+index 0000000..861f456
+--- /dev/null
++++ b/Assets./Assets.xcassets/AppIcons-2/playstore.imageset/Contents.json
+@@ -0,0 +1,21 @@
++{
++  "images" : [
++    {
++      "filename" : "playstore.png",
++      "idiom" : "universal",
++      "scale" : "1x"
++    },
++    {
++      "idiom" : "universal",
++      "scale" : "2x"
++    },
++    {
++      "idiom" : "universal",
++      "scale" : "3x"
++    }
++  ],
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets./Assets.xcassets/AppIcons-2/playstore.imageset/playstore.png b/Assets./Assets.xcassets/AppIcons-2/playstore.imageset/playstore.png
+new file mode 100644
+index 0000000..b284be2
+Binary files /dev/null and b/Assets./Assets.xcassets/AppIcons-2/playstore.imageset/playstore.png differ
+diff --git a/Xsite Broker/Assets.xcassets/AccentColor.colorset/Contents.json b/Assets./Assets.xcassets/Contents.json
+similarity index 51%
+rename from Xsite Broker/Assets.xcassets/AccentColor.colorset/Contents.json
+rename to Assets./Assets.xcassets/Contents.json
+index eb87897..73c0059 100644
+--- a/Xsite Broker/Assets.xcassets/AccentColor.colorset/Contents.json	
++++ b/Assets./Assets.xcassets/Contents.json
+@@ -1,9 +1,4 @@
+ {
+-  "colors" : [
+-    {
+-      "idiom" : "universal"
+-    }
+-  ],
+   "info" : {
+     "author" : "xcode",
+     "version" : 1
+diff --git a/Assets./Assets.xcassets/Xsite_Logo.imageset/Contents.json b/Assets./Assets.xcassets/Xsite_Logo.imageset/Contents.json
+new file mode 100644
+index 0000000..a0b3a22
+--- /dev/null
++++ b/Assets./Assets.xcassets/Xsite_Logo.imageset/Contents.json
+@@ -0,0 +1,21 @@
++{
++  "images" : [
++    {
++      "filename" : "appstore.png",
++      "idiom" : "universal",
++      "scale" : "1x"
++    },
++    {
++      "idiom" : "universal",
++      "scale" : "2x"
++    },
++    {
++      "idiom" : "universal",
++      "scale" : "3x"
++    }
++  ],
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets./Assets.xcassets/Xsite_Logo.imageset/appstore.png b/Assets./Assets.xcassets/Xsite_Logo.imageset/appstore.png
+new file mode 100644
+index 0000000..4084ee1
+Binary files /dev/null and b/Assets./Assets.xcassets/Xsite_Logo.imageset/appstore.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/Contents.json b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/Contents.json
+new file mode 100644
+index 0000000..0621567
+--- /dev/null
++++ b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/Contents.json
+@@ -0,0 +1,318 @@
++{
++  "images" : [
++    {
++      "filename" : "icon-ios-20x20@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "20x20"
++    },
++    {
++      "filename" : "icon-ios-20x20@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "20x20"
++    },
++    {
++      "filename" : "icon-ios-29x29@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-ios-29x29@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-ios-38x38@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "38x38"
++    },
++    {
++      "filename" : "icon-ios-38x38@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "38x38"
++    },
++    {
++      "filename" : "icon-ios-40x40@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "40x40"
++    },
++    {
++      "filename" : "icon-ios-40x40@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "40x40"
++    },
++    {
++      "filename" : "icon-ios-60x60@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "60x60"
++    },
++    {
++      "filename" : "icon-ios-60x60@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "60x60"
++    },
++    {
++      "filename" : "icon-ios-64x64@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "64x64"
++    },
++    {
++      "filename" : "icon-ios-64x64@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "64x64"
++    },
++    {
++      "filename" : "icon-ios-68x68@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "68x68"
++    },
++    {
++      "filename" : "icon-ios-76x76@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "76x76"
++    },
++    {
++      "filename" : "icon-ios-83.5x83.5@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "83.5x83.5"
++    },
++    {
++      "filename" : "icon-ios-1024x1024.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "size" : "1024x1024"
++    },
++    {
++      "filename" : "icon-mac-16x16.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "16x16"
++    },
++    {
++      "filename" : "icon-mac-16x16@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "16x16"
++    },
++    {
++      "filename" : "icon-mac-32x32.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "32x32"
++    },
++    {
++      "filename" : "icon-mac-32x32@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "32x32"
++    },
++    {
++      "filename" : "icon-mac-128x128.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "128x128"
++    },
++    {
++      "filename" : "icon-mac-128x128@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "128x128"
++    },
++    {
++      "filename" : "icon-mac-256x256.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "256x256"
++    },
++    {
++      "filename" : "icon-mac-256x256@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "256x256"
++    },
++    {
++      "filename" : "icon-mac-512x512.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "512x512"
++    },
++    {
++      "filename" : "icon-mac-512x512@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "512x512"
++    },
++    {
++      "filename" : "icon-watchos-22x22@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "22x22"
++    },
++    {
++      "filename" : "icon-watchos-24x24@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "24x24"
++    },
++    {
++      "filename" : "icon-watchos-27.5x27.5@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "27.5x27.5"
++    },
++    {
++      "filename" : "icon-watchos-29x29@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-watchos-30x30@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "30x30"
++    },
++    {
++      "filename" : "icon-watchos-32x32@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "32x32"
++    },
++    {
++      "filename" : "icon-watchos-33x33@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "33x33"
++    },
++    {
++      "filename" : "icon-watchos-40x40@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "40x40"
++    },
++    {
++      "filename" : "icon-watchos-43.5x43.5@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "43.5x43.5"
++    },
++    {
++      "filename" : "icon-watchos-44x44@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "44x44"
++    },
++    {
++      "filename" : "icon-watchos-46x46@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "46x46"
++    },
++    {
++      "filename" : "icon-watchos-50x50@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "50x50"
++    },
++    {
++      "filename" : "icon-watchos-51x51@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "51x51"
++    },
++    {
++      "filename" : "icon-watchos-54x54@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "54x54"
++    },
++    {
++      "filename" : "icon-watchos-86x86@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "86x86"
++    },
++    {
++      "filename" : "icon-watchos-98x98@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "98x98"
++    },
++    {
++      "filename" : "icon-watchos-108x108@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "108x108"
++    },
++    {
++      "filename" : "icon-watchos-117x117@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "117x117"
++    },
++    {
++      "filename" : "icon-watchos-129x129@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "129x129"
++    },
++    {
++      "filename" : "icon-watchos-1024x1024.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "size" : "1024x1024"
++    }
++  ],
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-1024x1024.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-1024x1024.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-1024x1024.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@2x.png
+new file mode 100644
+index 0000000..fce5c7d
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@3x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@3x.png
+new file mode 100644
+index 0000000..3a4f399
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@3x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@3x.png
+new file mode 100644
+index 0000000..68f8342
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@2x.png
+new file mode 100644
+index 0000000..26c2414
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@3x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@3x.png
+new file mode 100644
+index 0000000..019667a
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@2x.png
+new file mode 100644
+index 0000000..e603ae1
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@3x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@3x.png
+new file mode 100644
+index 0000000..85bfaba
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@2x.png
+new file mode 100644
+index 0000000..85bfaba
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@3x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@3x.png
+new file mode 100644
+index 0000000..ea82454
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@2x.png
+new file mode 100644
+index 0000000..44c33db
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@3x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@3x.png
+new file mode 100644
+index 0000000..037380d
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-68x68@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-68x68@2x.png
+new file mode 100644
+index 0000000..be60e3b
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-68x68@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-76x76@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-76x76@2x.png
+new file mode 100644
+index 0000000..9253133
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-76x76@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-83.5x83.5@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-83.5x83.5@2x.png
+new file mode 100644
+index 0000000..b68894a
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-83.5x83.5@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128.png
+new file mode 100644
+index 0000000..44c33db
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128@2x.png
+new file mode 100644
+index 0000000..5f86b24
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16.png
+new file mode 100644
+index 0000000..53b64e8
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16@2x.png
+new file mode 100644
+index 0000000..e154766
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256.png
+new file mode 100644
+index 0000000..5f86b24
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256@2x.png
+new file mode 100644
+index 0000000..3c6a6a1
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32.png
+new file mode 100644
+index 0000000..e154766
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32@2x.png
+new file mode 100644
+index 0000000..d4e7e03
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512.png
+new file mode 100644
+index 0000000..3c6a6a1
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512@2x.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-1024x1024.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-1024x1024.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-1024x1024.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-108x108@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-108x108@2x.png
+new file mode 100644
+index 0000000..7a116fa
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-108x108@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-117x117@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-117x117@2x.png
+new file mode 100644
+index 0000000..d78ccad
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-117x117@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-129x129@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-129x129@2x.png
+new file mode 100644
+index 0000000..d7bf14b
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-129x129@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-22x22@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-22x22@2x.png
+new file mode 100644
+index 0000000..7f8da44
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-22x22@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-24x24@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-24x24@2x.png
+new file mode 100644
+index 0000000..68ba3b6
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-24x24@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-27.5x27.5@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-27.5x27.5@2x.png
+new file mode 100644
+index 0000000..ac4ef17
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-27.5x27.5@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-29x29@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-29x29@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-30x30@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-30x30@2x.png
+new file mode 100644
+index 0000000..3a4f399
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-30x30@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-32x32@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-32x32@2x.png
+new file mode 100644
+index 0000000..d4e7e03
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-32x32@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-33x33@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-33x33@2x.png
+new file mode 100644
+index 0000000..c0d36e2
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-33x33@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-40x40@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-40x40@2x.png
+new file mode 100644
+index 0000000..e603ae1
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-40x40@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-43.5x43.5@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-43.5x43.5@2x.png
+new file mode 100644
+index 0000000..68f8342
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-43.5x43.5@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-44x44@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-44x44@2x.png
+new file mode 100644
+index 0000000..eb60f99
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-44x44@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-46x46@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-46x46@2x.png
+new file mode 100644
+index 0000000..1b1555f
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-46x46@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-50x50@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-50x50@2x.png
+new file mode 100644
+index 0000000..0e9f4cd
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-50x50@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-51x51@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-51x51@2x.png
+new file mode 100644
+index 0000000..75ed778
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-51x51@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-54x54@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-54x54@2x.png
+new file mode 100644
+index 0000000..8488a33
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-54x54@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-86x86@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-86x86@2x.png
+new file mode 100644
+index 0000000..43409ea
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-86x86@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-98x98@2x.png b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-98x98@2x.png
+new file mode 100644
+index 0000000..de14e22
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-98x98@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Contents.json b/Assets./Assets.xcassets/apple-devices/Contents.json
+new file mode 100644
+index 0000000..73c0059
+--- /dev/null
++++ b/Assets./Assets.xcassets/apple-devices/Contents.json
+@@ -0,0 +1,6 @@
++{
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/Contents.json b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/Contents.json
+new file mode 100644
+index 0000000..1e2dfa7
+--- /dev/null
++++ b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/Contents.json	
+@@ -0,0 +1,91 @@
++{
++  "images" : [
++    {
++      "filename" : "icon-iphone-29x29@2x.png",
++      "idiom" : "iphone",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-iphone-29x29@3x.png",
++      "idiom" : "iphone",
++      "scale" : "3x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-iphone-60x45@2x.png",
++      "idiom" : "iphone",
++      "scale" : "2x",
++      "size" : "60x45"
++    },
++    {
++      "filename" : "icon-iphone-60x45@3x.png",
++      "idiom" : "iphone",
++      "scale" : "3x",
++      "size" : "60x45"
++    },
++    {
++      "filename" : "icon-ipad-29x29@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-ipad-67x50@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "67x50"
++    },
++    {
++      "filename" : "icon-ipad-74x55@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "74x55"
++    },
++    {
++      "filename" : "icon-ios-marketing-1024x1024.png",
++      "idiom" : "ios-marketing",
++      "scale" : "1x",
++      "size" : "1024x1024"
++    },
++    {
++      "filename" : "icon-ios-27x20@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "27x20"
++    },
++    {
++      "filename" : "icon-ios-27x20@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "27x20"
++    },
++    {
++      "filename" : "icon-ios-32x24@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "32x24"
++    },
++    {
++      "filename" : "icon-ios-32x24@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "32x24"
++    },
++    {
++      "filename" : "icon-ios-1024x768.png",
++      "idiom" : "ios-marketing",
++      "platform" : "ios",
++      "scale" : "1x",
++      "size" : "1024x768"
++    }
++  ],
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-1024x768.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-1024x768.png
+new file mode 100644
+index 0000000..e510bdd
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-1024x768.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-27x20@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-27x20@2x.png
+new file mode 100644
+index 0000000..6c905c8
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-27x20@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-27x20@3x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-27x20@3x.png
+new file mode 100644
+index 0000000..d46f446
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-27x20@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-32x24@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-32x24@2x.png
+new file mode 100644
+index 0000000..71874cf
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-32x24@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-32x24@3x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-32x24@3x.png
+new file mode 100644
+index 0000000..2ee5dc5
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-32x24@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-marketing-1024x1024.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-marketing-1024x1024.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ios-marketing-1024x1024.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-29x29@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-29x29@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-67x50@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-67x50@2x.png
+new file mode 100644
+index 0000000..88d2b36
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-67x50@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-74x55@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-74x55@2x.png
+new file mode 100644
+index 0000000..c9a089b
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-ipad-74x55@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-29x29@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-29x29@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-29x29@3x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-29x29@3x.png
+new file mode 100644
+index 0000000..68f8342
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-29x29@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-60x45@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-60x45@2x.png
+new file mode 100644
+index 0000000..0601d92
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-60x45@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-60x45@3x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-60x45@3x.png
+new file mode 100644
+index 0000000..d6f8d01
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon 1.stickersiconset/icon-iphone-60x45@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/Contents.json b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/Contents.json
+new file mode 100644
+index 0000000..1e2dfa7
+--- /dev/null
++++ b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/Contents.json	
+@@ -0,0 +1,91 @@
++{
++  "images" : [
++    {
++      "filename" : "icon-iphone-29x29@2x.png",
++      "idiom" : "iphone",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-iphone-29x29@3x.png",
++      "idiom" : "iphone",
++      "scale" : "3x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-iphone-60x45@2x.png",
++      "idiom" : "iphone",
++      "scale" : "2x",
++      "size" : "60x45"
++    },
++    {
++      "filename" : "icon-iphone-60x45@3x.png",
++      "idiom" : "iphone",
++      "scale" : "3x",
++      "size" : "60x45"
++    },
++    {
++      "filename" : "icon-ipad-29x29@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-ipad-67x50@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "67x50"
++    },
++    {
++      "filename" : "icon-ipad-74x55@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "74x55"
++    },
++    {
++      "filename" : "icon-ios-marketing-1024x1024.png",
++      "idiom" : "ios-marketing",
++      "scale" : "1x",
++      "size" : "1024x1024"
++    },
++    {
++      "filename" : "icon-ios-27x20@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "27x20"
++    },
++    {
++      "filename" : "icon-ios-27x20@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "27x20"
++    },
++    {
++      "filename" : "icon-ios-32x24@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "32x24"
++    },
++    {
++      "filename" : "icon-ios-32x24@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "32x24"
++    },
++    {
++      "filename" : "icon-ios-1024x768.png",
++      "idiom" : "ios-marketing",
++      "platform" : "ios",
++      "scale" : "1x",
++      "size" : "1024x768"
++    }
++  ],
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-1024x768.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-1024x768.png
+new file mode 100644
+index 0000000..e510bdd
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-1024x768.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@2x.png
+new file mode 100644
+index 0000000..6c905c8
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@3x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@3x.png
+new file mode 100644
+index 0000000..d46f446
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@2x.png
+new file mode 100644
+index 0000000..71874cf
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@3x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@3x.png
+new file mode 100644
+index 0000000..2ee5dc5
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-marketing-1024x1024.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-marketing-1024x1024.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-marketing-1024x1024.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-29x29@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-29x29@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-67x50@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-67x50@2x.png
+new file mode 100644
+index 0000000..88d2b36
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-67x50@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-74x55@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-74x55@2x.png
+new file mode 100644
+index 0000000..c9a089b
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-74x55@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@3x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@3x.png
+new file mode 100644
+index 0000000..68f8342
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@3x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@2x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@2x.png
+new file mode 100644
+index 0000000..0601d92
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@2x.png differ
+diff --git a/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@3x.png b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@3x.png
+new file mode 100644
+index 0000000..d6f8d01
+Binary files /dev/null and b/Assets./Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@3x.png differ
+diff --git a/Assets.xcassets/Contents.json b/Assets.xcassets/Contents.json
+new file mode 100644
+index 0000000..73c0059
+--- /dev/null
++++ b/Assets.xcassets/Contents.json
+@@ -0,0 +1,6 @@
++{
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/Contents.json b/Assets.xcassets/apple-devices/AppIcon.appiconset/Contents.json
+new file mode 100644
+index 0000000..0621567
+--- /dev/null
++++ b/Assets.xcassets/apple-devices/AppIcon.appiconset/Contents.json
+@@ -0,0 +1,318 @@
++{
++  "images" : [
++    {
++      "filename" : "icon-ios-20x20@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "20x20"
++    },
++    {
++      "filename" : "icon-ios-20x20@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "20x20"
++    },
++    {
++      "filename" : "icon-ios-29x29@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-ios-29x29@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-ios-38x38@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "38x38"
++    },
++    {
++      "filename" : "icon-ios-38x38@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "38x38"
++    },
++    {
++      "filename" : "icon-ios-40x40@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "40x40"
++    },
++    {
++      "filename" : "icon-ios-40x40@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "40x40"
++    },
++    {
++      "filename" : "icon-ios-60x60@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "60x60"
++    },
++    {
++      "filename" : "icon-ios-60x60@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "60x60"
++    },
++    {
++      "filename" : "icon-ios-64x64@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "64x64"
++    },
++    {
++      "filename" : "icon-ios-64x64@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "64x64"
++    },
++    {
++      "filename" : "icon-ios-68x68@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "68x68"
++    },
++    {
++      "filename" : "icon-ios-76x76@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "76x76"
++    },
++    {
++      "filename" : "icon-ios-83.5x83.5@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "83.5x83.5"
++    },
++    {
++      "filename" : "icon-ios-1024x1024.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "size" : "1024x1024"
++    },
++    {
++      "filename" : "icon-mac-16x16.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "16x16"
++    },
++    {
++      "filename" : "icon-mac-16x16@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "16x16"
++    },
++    {
++      "filename" : "icon-mac-32x32.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "32x32"
++    },
++    {
++      "filename" : "icon-mac-32x32@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "32x32"
++    },
++    {
++      "filename" : "icon-mac-128x128.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "128x128"
++    },
++    {
++      "filename" : "icon-mac-128x128@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "128x128"
++    },
++    {
++      "filename" : "icon-mac-256x256.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "256x256"
++    },
++    {
++      "filename" : "icon-mac-256x256@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "256x256"
++    },
++    {
++      "filename" : "icon-mac-512x512.png",
++      "idiom" : "mac",
++      "scale" : "1x",
++      "size" : "512x512"
++    },
++    {
++      "filename" : "icon-mac-512x512@2x.png",
++      "idiom" : "mac",
++      "scale" : "2x",
++      "size" : "512x512"
++    },
++    {
++      "filename" : "icon-watchos-22x22@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "22x22"
++    },
++    {
++      "filename" : "icon-watchos-24x24@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "24x24"
++    },
++    {
++      "filename" : "icon-watchos-27.5x27.5@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "27.5x27.5"
++    },
++    {
++      "filename" : "icon-watchos-29x29@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-watchos-30x30@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "30x30"
++    },
++    {
++      "filename" : "icon-watchos-32x32@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "32x32"
++    },
++    {
++      "filename" : "icon-watchos-33x33@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "33x33"
++    },
++    {
++      "filename" : "icon-watchos-40x40@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "40x40"
++    },
++    {
++      "filename" : "icon-watchos-43.5x43.5@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "43.5x43.5"
++    },
++    {
++      "filename" : "icon-watchos-44x44@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "44x44"
++    },
++    {
++      "filename" : "icon-watchos-46x46@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "46x46"
++    },
++    {
++      "filename" : "icon-watchos-50x50@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "50x50"
++    },
++    {
++      "filename" : "icon-watchos-51x51@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "51x51"
++    },
++    {
++      "filename" : "icon-watchos-54x54@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "54x54"
++    },
++    {
++      "filename" : "icon-watchos-86x86@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "86x86"
++    },
++    {
++      "filename" : "icon-watchos-98x98@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "98x98"
++    },
++    {
++      "filename" : "icon-watchos-108x108@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "108x108"
++    },
++    {
++      "filename" : "icon-watchos-117x117@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "117x117"
++    },
++    {
++      "filename" : "icon-watchos-129x129@2x.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "scale" : "2x",
++      "size" : "129x129"
++    },
++    {
++      "filename" : "icon-watchos-1024x1024.png",
++      "idiom" : "universal",
++      "platform" : "watchos",
++      "size" : "1024x1024"
++    }
++  ],
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-1024x1024.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-1024x1024.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-1024x1024.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@2x.png
+new file mode 100644
+index 0000000..fce5c7d
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@3x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@3x.png
+new file mode 100644
+index 0000000..3a4f399
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-20x20@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@3x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@3x.png
+new file mode 100644
+index 0000000..68f8342
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-29x29@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@2x.png
+new file mode 100644
+index 0000000..26c2414
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@3x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@3x.png
+new file mode 100644
+index 0000000..019667a
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-38x38@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@2x.png
+new file mode 100644
+index 0000000..e603ae1
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@3x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@3x.png
+new file mode 100644
+index 0000000..85bfaba
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-40x40@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@2x.png
+new file mode 100644
+index 0000000..85bfaba
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@3x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@3x.png
+new file mode 100644
+index 0000000..ea82454
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-60x60@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@2x.png
+new file mode 100644
+index 0000000..44c33db
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@3x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@3x.png
+new file mode 100644
+index 0000000..037380d
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-64x64@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-68x68@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-68x68@2x.png
+new file mode 100644
+index 0000000..be60e3b
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-68x68@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-76x76@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-76x76@2x.png
+new file mode 100644
+index 0000000..9253133
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-76x76@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-83.5x83.5@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-83.5x83.5@2x.png
+new file mode 100644
+index 0000000..b68894a
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-ios-83.5x83.5@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128.png
+new file mode 100644
+index 0000000..44c33db
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128@2x.png
+new file mode 100644
+index 0000000..5f86b24
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-128x128@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16.png
+new file mode 100644
+index 0000000..53b64e8
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16@2x.png
+new file mode 100644
+index 0000000..e154766
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-16x16@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256.png
+new file mode 100644
+index 0000000..5f86b24
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256@2x.png
+new file mode 100644
+index 0000000..3c6a6a1
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-256x256@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32.png
+new file mode 100644
+index 0000000..e154766
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32@2x.png
+new file mode 100644
+index 0000000..d4e7e03
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-32x32@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512.png
+new file mode 100644
+index 0000000..3c6a6a1
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512@2x.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-mac-512x512@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-1024x1024.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-1024x1024.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-1024x1024.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-108x108@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-108x108@2x.png
+new file mode 100644
+index 0000000..7a116fa
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-108x108@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-117x117@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-117x117@2x.png
+new file mode 100644
+index 0000000..d78ccad
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-117x117@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-129x129@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-129x129@2x.png
+new file mode 100644
+index 0000000..d7bf14b
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-129x129@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-22x22@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-22x22@2x.png
+new file mode 100644
+index 0000000..7f8da44
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-22x22@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-24x24@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-24x24@2x.png
+new file mode 100644
+index 0000000..68ba3b6
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-24x24@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-27.5x27.5@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-27.5x27.5@2x.png
+new file mode 100644
+index 0000000..ac4ef17
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-27.5x27.5@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-29x29@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-29x29@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-30x30@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-30x30@2x.png
+new file mode 100644
+index 0000000..3a4f399
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-30x30@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-32x32@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-32x32@2x.png
+new file mode 100644
+index 0000000..d4e7e03
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-32x32@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-33x33@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-33x33@2x.png
+new file mode 100644
+index 0000000..c0d36e2
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-33x33@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-40x40@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-40x40@2x.png
+new file mode 100644
+index 0000000..e603ae1
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-40x40@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-43.5x43.5@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-43.5x43.5@2x.png
+new file mode 100644
+index 0000000..68f8342
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-43.5x43.5@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-44x44@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-44x44@2x.png
+new file mode 100644
+index 0000000..eb60f99
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-44x44@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-46x46@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-46x46@2x.png
+new file mode 100644
+index 0000000..1b1555f
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-46x46@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-50x50@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-50x50@2x.png
+new file mode 100644
+index 0000000..0e9f4cd
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-50x50@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-51x51@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-51x51@2x.png
+new file mode 100644
+index 0000000..75ed778
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-51x51@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-54x54@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-54x54@2x.png
+new file mode 100644
+index 0000000..8488a33
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-54x54@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-86x86@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-86x86@2x.png
+new file mode 100644
+index 0000000..43409ea
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-86x86@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-98x98@2x.png b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-98x98@2x.png
+new file mode 100644
+index 0000000..de14e22
+Binary files /dev/null and b/Assets.xcassets/apple-devices/AppIcon.appiconset/icon-watchos-98x98@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/Contents.json b/Assets.xcassets/apple-devices/Contents.json
+new file mode 100644
+index 0000000..73c0059
+--- /dev/null
++++ b/Assets.xcassets/apple-devices/Contents.json
+@@ -0,0 +1,6 @@
++{
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/Contents.json b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/Contents.json
+new file mode 100644
+index 0000000..1e2dfa7
+--- /dev/null
++++ b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/Contents.json	
+@@ -0,0 +1,91 @@
++{
++  "images" : [
++    {
++      "filename" : "icon-iphone-29x29@2x.png",
++      "idiom" : "iphone",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-iphone-29x29@3x.png",
++      "idiom" : "iphone",
++      "scale" : "3x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-iphone-60x45@2x.png",
++      "idiom" : "iphone",
++      "scale" : "2x",
++      "size" : "60x45"
++    },
++    {
++      "filename" : "icon-iphone-60x45@3x.png",
++      "idiom" : "iphone",
++      "scale" : "3x",
++      "size" : "60x45"
++    },
++    {
++      "filename" : "icon-ipad-29x29@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "29x29"
++    },
++    {
++      "filename" : "icon-ipad-67x50@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "67x50"
++    },
++    {
++      "filename" : "icon-ipad-74x55@2x.png",
++      "idiom" : "ipad",
++      "scale" : "2x",
++      "size" : "74x55"
++    },
++    {
++      "filename" : "icon-ios-marketing-1024x1024.png",
++      "idiom" : "ios-marketing",
++      "scale" : "1x",
++      "size" : "1024x1024"
++    },
++    {
++      "filename" : "icon-ios-27x20@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "27x20"
++    },
++    {
++      "filename" : "icon-ios-27x20@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "27x20"
++    },
++    {
++      "filename" : "icon-ios-32x24@2x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "2x",
++      "size" : "32x24"
++    },
++    {
++      "filename" : "icon-ios-32x24@3x.png",
++      "idiom" : "universal",
++      "platform" : "ios",
++      "scale" : "3x",
++      "size" : "32x24"
++    },
++    {
++      "filename" : "icon-ios-1024x768.png",
++      "idiom" : "ios-marketing",
++      "platform" : "ios",
++      "scale" : "1x",
++      "size" : "1024x768"
++    }
++  ],
++  "info" : {
++    "author" : "xcode",
++    "version" : 1
++  }
++}
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-1024x768.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-1024x768.png
+new file mode 100644
+index 0000000..e510bdd
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-1024x768.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@2x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@2x.png
+new file mode 100644
+index 0000000..6c905c8
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@3x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@3x.png
+new file mode 100644
+index 0000000..d46f446
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-27x20@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@2x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@2x.png
+new file mode 100644
+index 0000000..71874cf
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@3x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@3x.png
+new file mode 100644
+index 0000000..2ee5dc5
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-32x24@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-marketing-1024x1024.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-marketing-1024x1024.png
+new file mode 100644
+index 0000000..f3b8552
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ios-marketing-1024x1024.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-29x29@2x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-29x29@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-67x50@2x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-67x50@2x.png
+new file mode 100644
+index 0000000..88d2b36
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-67x50@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-74x55@2x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-74x55@2x.png
+new file mode 100644
+index 0000000..c9a089b
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-ipad-74x55@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@2x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@2x.png
+new file mode 100644
+index 0000000..e431f4d
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@3x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@3x.png
+new file mode 100644
+index 0000000..68f8342
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-29x29@3x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@2x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@2x.png
+new file mode 100644
+index 0000000..0601d92
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@2x.png differ
+diff --git a/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@3x.png b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@3x.png
+new file mode 100644
+index 0000000..d6f8d01
+Binary files /dev/null and b/Assets.xcassets/apple-devices/Messages Icon.stickersiconset/icon-iphone-60x45@3x.png differ
+diff --git a/Info.plist b/Info.plist
+new file mode 100644
+index 0000000..daf4982
+--- /dev/null
++++ b/Info.plist
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict>
++	<key>GENERATE_INFOPLIST_FILE</key>
++	<true/>
++</dict>
++</plist>
+diff --git a/LanguageManager.swift b/LanguageManager.swift
+new file mode 100644
+index 0000000..20294b0
+--- /dev/null
++++ b/LanguageManager.swift
+@@ -0,0 +1,25 @@
++//
++//  LanguageManager.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
++import Foundation
++import Combine
++import SwiftUI
++
++@MainActor
++final class LanguageManager: ObservableObject {
++    @Published var isArabic: Bool = false
++    
++    var currentLocale: Locale {
++        Locale(identifier: isArabic ? "ar" : "en")
++    }
++    
++    func toggleLanguage() {
++        withAnimation(.spring()) {
++            isArabic.toggle()
++        }
++    }
++}
+diff --git a/Views 2.swift b/Views 2.swift
+new file mode 100644
+index 0000000..f8b71f0
+--- /dev/null
++++ b/Views 2.swift	
+@@ -0,0 +1,7 @@
++//
++//  Untitled.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
+diff --git a/Views.swift b/Views.swift
+new file mode 100644
+index 0000000..f8b71f0
+--- /dev/null
++++ b/Views.swift
+@@ -0,0 +1,7 @@
++//
++//  Untitled.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
+diff --git a/Views/AboutView.swift b/Views/AboutView.swift
+new file mode 100644
+index 0000000..07e0d28
+--- /dev/null
++++ b/Views/AboutView.swift
+@@ -0,0 +1,79 @@
++import SwiftUI
++
++struct AboutView: View {
++    var body: some View {
++        ScrollView {
++            VStack(alignment: .leading, spacing: 16) {
++                Text("About Xsite Real Estate Brokers LLC")
++                    .font(.title2.bold())
++                
++                Text("""
++Xsite Real Estate Brokers is a Dubai-based property company offering full-service real-estate solutions — including Sales, Leasing, Off-Plan investments, and Property Management.
++
++We represent all major Dubai developers and ensure transparency, trust, and professionalism in every transaction.
++
++Licensed by RERA & Dubai Land Department.
++""")
++                
++                Text("Website: xsite.ae")
++                    .font(.callout)
++                    .foregroundStyle(.teal)
++                    .padding(.top)
++            }
++            .padding()
++        }
++    }
++}
++import SwiftUI
++
++@EnvironmentObject var lang: <#type#>  = <#initializer#>;LanguageManager()
++    
++    var body: some View {
++        ScrollView {
++            VStack(alignment: .leading, spacing: 16) {
++                Text(lang.isArabic ? "عن شركة إكسايت للعقارات" : "About Xsite Real Estate Brokers LLC")
++                    .font(.title2.bold())
++                
++                Text(lang.isArabic ?
++"""
++شركة إكسايت للعقارات مقرها دبي، تقدم حلولاً متكاملة في بيع وتأجير وإدارة العقارات، وتمثل جميع المطورين الرئيسيين في دبي.
++
++نلتزم بالشفافية والاحترافية في جميع تعاملاتنا.
++""" :
++"""
++Xsite Real Estate Brokers is a Dubai-based property company offering full-service real-estate solutions — including Sales, Leasing, Off-Plan investments, and Property Management.
++
++We represent all major Dubai developers and ensure transparency, trust, and professionalism in every transaction.
++""")
++                
++                Text("Website: xsite.ae")
++                    .font(.callout)
++                    .foregroundStyle(.teal)
++                    .padding(.top)
++            }
++            .padding()
++        }
++    }
++}
++import SwiftUI
++
++struct AboutView: View {
++    var body: some View {
++        ScrollView {
++            VStack(alignment: .leading, spacing: 16) {
++                Text("About Xsite Real Estate Brokers LLC")
++                    .font(.title2.bold())
++                Text("""
++Xsite Real Estate Brokers is a Dubai-based property company offering Sales, Leasing, Off-Plan investments, and Property Management.
++
++We represent all major Dubai developers and ensure transparency, trust, and professionalism in every transaction.
++
++Website: xsite.ae
++""")
++                .padding(.bottom)
++            }
++            .padding()
++        }
++    }
++}
++
+diff --git a/Views/HomeView.swift b/Views/HomeView.swift
+new file mode 100644
+index 0000000..1b847db
+--- /dev/null
++++ b/Views/HomeView.swift
+@@ -0,0 +1,207 @@
++//
++//  HomeView.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
++import Foundation
++import SwiftUI
++
++struct HomeView: View {
++    var body: some View {
++        ScrollView {
++            VStack(spacing: 24) {
++                Image("logo_Xsite")
++                    .resizable()
++                    .scaledToFit()
++                    .frame(height: 120)
++                    .padding(.top, 40)
++                
++                Text("Xsite Real Estate Brokers LLC")
++                    .font(.title2.bold())
++                    .multilineTextAlignment(.center)
++                
++                Text("Your trusted Dubai real estate experts — Ready, Off-Plan, and Leasing Services")
++                    .font(.body)
++                    .multilineTextAlignment(.center)
++                    .padding(.horizontal)
++                
++                Divider()
++                
++                VStack(spacing: 16) {
++                    HomeButton(title: "Meet Our Team", icon: "person.3.fill")
++                    HomeButton(title: "Register Interest", icon: "square.and.pencil")
++                    HomeButton(title: "Mortgage Calculator", icon: "percent")
++                    HomeButton(title: "RERA Index", icon: "chart.line.uptrend.xyaxis")
++                    HomeButton(title: "Contact Us", icon: "phone.fill")
++                }
++                .padding(.horizontal)
++                
++                Spacer(minLength: 30)
++                
++                Text("Developed by Faraz Kazmi\nshah-app.com")
++                    .font(.footnote)
++                    .multilineTextAlignment(.center)
++                    .opacity(0.7)
++                    .padding(.bottom, 40)
++            }
++            .padding(.horizontal)
++        }
++        .background(LinearGradient(colors: [.black, .gray.opacity(0.3)], startPoint: .top, endPoint: .bottom)
++                        .ignoresSafeArea())
++    }
++}
++
++struct HomeButton: View {
++    var title: String
++    var icon: String
++    
++    var body: some View {
++        Button(action: {}) {
++            HStack {
++                Image(systemName: icon)
++                    .font(.title2)
++                    .frame(width: 36)
++                Text(title)
++                    .fontWeight(.semibold)
++                Spacer()
++                Image(systemName: "chevron.right")
++                    .opacity(0.5)
++            }
++            .padding()
++            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
++        }
++    }
++}
++import SwiftUI
++
++struct HomeView: View {
++    @EnvironmentObject var lang: LanguageManager
++    
++    var body: some View {
++        ScrollView {
++            VStack(spacing: 24) {
++                Image("logo_Xsite")
++                    .resizable()
++                    .scaledToFit()
++                    .frame(height: 120)
++                    .padding(.top, 40)
++                
++                Text("Xsite Real Estate Brokers LLC")
++                    .font(.title2.bold())
++                    .multilineTextAlignment(.center)
++                
++                Text(lang.isArabic
++                     ? "خبراء العقارات في دبي - بيع، إيجار، واستثمار"
++                     : "Your trusted Dubai real estate experts — Ready, Off-Plan & Leasing")
++                    .font(.body)
++                    .multilineTextAlignment(.center)
++                    .padding(.horizontal)
++                
++                Divider()
++                
++                VStack(spacing: 16) {
++                    HomeButton(title: localized("Meet Our Team"), icon: "person.3.fill")
++                    HomeButton(title: localized("Register Interest"), icon: "square.and.pencil")
++                    HomeButton(title: localized("Mortgage Calculator"), icon: "percent")
++                    HomeButton(title: localized("RERA Index"), icon: "chart.line.uptrend.xyaxis")
++                    HomeButton(title: localized("Contact Us"), icon: "phone.fill")
++                }
++                .padding(.horizontal)
++                
++                Spacer(minLength: 30)
++                
++                Text("Developed by Faraz Kazmi\nshah-app.com")
++                    .font(.footnote)
++                    .multilineTextAlignment(.center)
++                    .opacity(0.7)
++                    .padding(.bottom, 40)
++            }
++            .padding(.horizontal)
++        }
++        .background(LinearGradient(colors: [.black, .gray.opacity(0.3)],
++                                   startPoint: .top, endPoint: .bottom).ignoresSafeArea())
++    }
++}
++
++struct HomeButton: View {
++    var title: String
++    var icon: String
++    
++    var body: some View {
++        Button(action: {}) {
++            HStack {
++                Image(systemName: icon).frame(width: 32)
++                Text(title).fontWeight(.semibold)
++                Spacer()
++                Image(systemName: "chevron.right").opacity(0.5)
++            }
++            .padding()
++            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
++        }
++    }
++}
++import SwiftUI
++
++struct HomeView: View {
++    var body: some View {
++        ScrollView {
++            VStack(spacing: 24) {
++                Image("logo_Xsite")
++                    .resizable()
++                    .scaledToFit()
++                    .frame(height: 120)
++                    .padding(.top, 40)
++                
++                Text("Xsite Real Estate Brokers LLC")
++                    .font(.title2.bold())
++                
++                Text("Your trusted Dubai real estate experts — Ready, Off-Plan & Leasing")
++                    .font(.body)
++                    .multilineTextAlignment(.center)
++                    .padding(.horizontal)
++                
++                Divider()
++                
++                VStack(spacing: 16) {
++                    HomeButton(title: localized("Meet Our Team"), icon: "person.3.fill")
++                    HomeButton(title: localized("Register Interest"), icon: "square.and.pencil")
++                    HomeButton(title: localized("Mortgage Calculator"), icon: "percent")
++                    HomeButton(title: localized("RERA Index"), icon: "chart.line.uptrend.xyaxis")
++                    HomeButton(title: localized("Contact Us"), icon: "phone.fill")
++                }
++                .padding(.horizontal)
++                
++                Text("Developed by Faraz Kazmi\nshah-app.com")
++                    .font(.footnote)
++                    .multilineTextAlignment(.center)
++                    .opacity(0.7)
++                    .padding(.bottom, 40)
++            }
++            .padding(.horizontal)
++        }
++        .background(
++            LinearGradient(colors: [.black, .gray.opacity(0.3)],
++                           startPoint: .top, endPoint: .bottom)
++            .ignoresSafeArea()
++        )
++    }
++}
++
++struct HomeButton: View {
++    var title: String
++    var icon: String
++    var body: some View {
++        Button {} label: {
++            HStack {
++                Image(systemName: icon).frame(width: 30)
++                Text(title).fontWeight(.semibold)
++                Spacer()
++                Image(systemName: "chevron.right").opacity(0.5)
++            }
++            .padding()
++            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
++        }
++    }
++}
+diff --git a/Views/OffPlanView.swift b/Views/OffPlanView.swift
+new file mode 100644
+index 0000000..a0e1919
+--- /dev/null
++++ b/Views/OffPlanView.swift
+@@ -0,0 +1,42 @@
++//
++//  OffPlanView.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
++import SwiftUI
++struct OffPlanView: View {
++    let projects = [
++        Property(name: "Emaar Beachfront", location: "Dubai Harbour", price: "From AED 1.5 M", image: "sun.max.fill"),
++        Property(name: "Sobha Hartland II", location: "MBR City", price: "From AED 1.2 M", image: "leaf.fill")
++    ]
++    
++    var body: some View {
++        List(projects) { p in
++            PropertyRow(p: p)
++        }
++        .navigationTitle(localized("Off-Plan Projects"))
++    }
++}
++import SwiftUI
++
++struct OffPlanView: View {
++    let items = [
++        Property(name: "Emaar Beachfront", location: "Dubai Harbour", price: "From AED 1.5 M", icon: "sun.max.fill"),
++        Property(name: "Sobha Hartland II", location: "MBR City", price: "From AED 1.2 M", icon: "leaf.fill")
++    ]
++    var body: some View {
++        List(items) { p in
++            HStack {
++                Image(systemName: p.icon).font(.largeTitle).frame(width: 50)
++                VStack(alignment: .leading) {
++                    Text(p.name).font(.headline)
++                    Text(p.location).font(.subheadline)
++                    Text(p.price).font(.footnote).foregroundColor(.secondary)
++                }
++            }
++        }
++        .navigationTitle(localized("Off-Plan Projects"))
++    }
++}
+diff --git a/Views/Propertyview.swift b/Views/Propertyview.swift
+new file mode 100644
+index 0000000..4446015
+--- /dev/null
++++ b/Views/Propertyview.swift
+@@ -0,0 +1,18 @@
++//
++//  Propertyview.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//import Foundation
++
++import Foundation
++
++struct Property: Identifiable {
++    let id = UUID()
++    let name: String
++    let location: String
++    let price: String
++    let image: String
++}
++
++
+diff --git a/Views/ReadyView.swift b/Views/ReadyView.swift
+new file mode 100644
+index 0000000..b65095a
+--- /dev/null
++++ b/Views/ReadyView.swift
+@@ -0,0 +1,82 @@
++//
++//  ReadyView.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
++import SwiftUI
++
++struct ReadyView: View {
++    let properties = [
++        Property(name: "Marina View Apartment", location: "Dubai Marina", price: "AED 1.2 M", image: "house.fill"),
++        Property(name: "Downtown Loft", location: "Downtown Dubai", price: "AED 2.4 M", image: "building.2.fill")
++    ]
++    
++    var body: some View {
++        List(properties) { p in
++            PropertyRow(p: p)
++        }
++        .navigationTitle(localized("Ready Properties"))
++    }
++}
++
++struct PropertyRow: View {
++    let p: Property
++    var body: some View {
++        HStack {
++            Image(systemName: p.image)
++                .font(.largeTitle)
++                .frame(width: 50)
++            VStack(alignment: .leading) {
++                Text(p.name).font(.headline)
++                Text(p.location).font(.subheadline)
++                Text(p.price).font(.footnote).foregroundColor(.secondary)
++            }
++        }
++    }
++}
++
++// Renamed to avoid conflict with the separate RentingView in RentingView.swift
++struct RentingListView: View {
++    let rentals = [
++        Property(name: "Town Square 2 BR", location: "Nshama Town Square", price: "AED 75 K / Year", image: "key.fill"),
++        Property(name: "Business Bay Studio", location: "Bay Square", price: "AED 55 K / Year", image: "bed.double.fill")
++    ]
++    
++    var body: some View {
++        List(rentals) { p in
++            PropertyRow(p: p)
++        }
++        .navigationTitle(localized("Renting Options"))
++    }
++}
++import SwiftUI
++
++struct Property: Identifiable {
++    let id = UUID()
++    let name: String
++    let location: String
++    let price: String
++    let icon: String
++}
++
++struct ReadyView: View {
++    let items = [
++        Property(name: "Marina View Apartment", location: "Dubai Marina", price: "AED 1.2 M", icon: "house.fill"),
++        Property(name: "Downtown Loft", location: "Downtown Dubai", price: "AED 2.4 M", icon: "building.2.fill")
++    ]
++    var body: some View {
++        List(items) { p in
++            HStack {
++                Image(systemName: p.icon).font(.largeTitle).frame(width: 50)
++                VStack(alignment: .leading) {
++                    Text(p.name).font(.headline)
++                    Text(p.location).font(.subheadline)
++                    Text(p.price).font(.footnote).foregroundColor(.secondary)
++                }
++            }
++        }
++        .navigationTitle(localized("Ready Properties"))
++    }
++}
+diff --git a/Views/RentingView.swift b/Views/RentingView.swift
+new file mode 100644
+index 0000000..05412ab
+--- /dev/null
++++ b/Views/RentingView.swift
+@@ -0,0 +1,30 @@
++//
++//  RentingView.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++import SwiftUI
++
++struct RentingView: View {
++    let items = [
++        Property(name: "Town Square 2 BR", location: "Nshama Town Square", price: "AED 75K / Year", image: "key.fill"),
++        Property(name: "Business Bay Studio", location: "Bay Square", price: "AED 55K / Year", image: "bed.double.fill")
++    ]
++    
++    var body: some View {
++        List(items) { p in
++            HStack {
++                Image(systemName: p.image)
++                    .font(.largeTitle)
++                    .frame(width: 50)
++                VStack(alignment: .leading) {
++                    Text(p.name).font(.headline)
++                    Text(p.location).font(.subheadline)
++                    Text(p.price).font(.footnote).foregroundColor(.secondary)
++                }
++            }
++        }
++        .navigationTitle(NSLocalizedString("Renting Options", comment: "Title for renting list"))
++    }
++}
+diff --git a/Xsite Broker.app/__preview.dylib b/Xsite Broker.app/__preview.dylib
+new file mode 100755
+index 0000000..a8345e5
+Binary files /dev/null and b/Xsite Broker.app/__preview.dylib differ
+diff --git a/Xsite Broker.entitlements b/Xsite Broker.entitlements
+new file mode 100644
+index 0000000..0c67376
+--- /dev/null
++++ b/Xsite Broker.entitlements	
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
++<plist version="1.0">
++<dict/>
++</plist>
+diff --git a/Xsite Broker.xcodeproj/xcuserdata/faraz.xcuserdatad/xcschemes/xcschememanagement.plist b/Xsite Broker.xcodeproj/xcuserdata/faraz.xcuserdatad/xcschemes/xcschememanagement.plist
+index bfa50ea..bbcfff4 100644
+--- a/Xsite Broker.xcodeproj/xcuserdata/faraz.xcuserdatad/xcschemes/xcschememanagement.plist	
++++ b/Xsite Broker.xcodeproj/xcuserdata/faraz.xcuserdatad/xcschemes/xcschememanagement.plist	
+@@ -4,11 +4,24 @@
+ <dict>
+ 	<key>SchemeUserState</key>
+ 	<dict>
++		<key>Xsite Broker 1.xcscheme_^#shared#^_</key>
++		<dict>
++			<key>orderHint</key>
++			<integer>1</integer>
++		</dict>
+ 		<key>Xsite Broker.xcscheme_^#shared#^_</key>
+ 		<dict>
+ 			<key>orderHint</key>
+ 			<integer>0</integer>
+ 		</dict>
+ 	</dict>
++	<key>SuppressBuildableAutocreation</key>
++	<dict>
++		<key>D0B344A22EA403A600258696</key>
++		<dict>
++			<key>primary</key>
++			<true/>
++		</dict>
++	</dict>
+ </dict>
+ </plist>
+diff --git a/Xsite Broker/Assets.xcassets/AppIcon.appiconset/Contents.json b/Xsite Broker/Assets.xcassets/AppIcon.appiconset/Contents.json
+deleted file mode 100644
+index 2305880..0000000
+--- a/Xsite Broker/Assets.xcassets/AppIcon.appiconset/Contents.json	
++++ /dev/null
+@@ -1,35 +0,0 @@
+-{
+-  "images" : [
+-    {
+-      "idiom" : "universal",
+-      "platform" : "ios",
+-      "size" : "1024x1024"
+-    },
+-    {
+-      "appearances" : [
+-        {
+-          "appearance" : "luminosity",
+-          "value" : "dark"
+-        }
+-      ],
+-      "idiom" : "universal",
+-      "platform" : "ios",
+-      "size" : "1024x1024"
+-    },
+-    {
+-      "appearances" : [
+-        {
+-          "appearance" : "luminosity",
+-          "value" : "tinted"
+-        }
+-      ],
+-      "idiom" : "universal",
+-      "platform" : "ios",
+-      "size" : "1024x1024"
+-    }
+-  ],
+-  "info" : {
+-    "author" : "xcode",
+-    "version" : 1
+-  }
+-}
+diff --git a/Xsite Broker/ContentView.swift b/Xsite Broker/ContentView.swift
+deleted file mode 100644
+index 95d3ce7..0000000
+--- a/Xsite Broker/ContentView.swift	
++++ /dev/null
+@@ -1,61 +0,0 @@
+-//
+-//  ContentView.swift
+-//  Xsite Broker
+-//
+-//  Created by Faraz on 18/10/2025.
+-//
+-
+-import SwiftUI
+-import SwiftData
+-
+-struct ContentView: View {
+-    @Environment(\.modelContext) private var modelContext
+-    @Query private var items: [Item]
+-
+-    var body: some View {
+-        NavigationSplitView {
+-            List {
+-                ForEach(items) { item in
+-                    NavigationLink {
+-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+-                    } label: {
+-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+-                    }
+-                }
+-                .onDelete(perform: deleteItems)
+-            }
+-            .toolbar {
+-                ToolbarItem(placement: .navigationBarTrailing) {
+-                    EditButton()
+-                }
+-                ToolbarItem {
+-                    Button(action: addItem) {
+-                        Label("Add Item", systemImage: "plus")
+-                    }
+-                }
+-            }
+-        } detail: {
+-            Text("Select an item")
+-        }
+-    }
+-
+-    private func addItem() {
+-        withAnimation {
+-            let newItem = Item(timestamp: Date())
+-            modelContext.insert(newItem)
+-        }
+-    }
+-
+-    private func deleteItems(offsets: IndexSet) {
+-        withAnimation {
+-            for index in offsets {
+-                modelContext.delete(items[index])
+-            }
+-        }
+-    }
+-}
+-
+-#Preview {
+-    ContentView()
+-        .modelContainer(for: Item.self, inMemory: true)
+-}
+diff --git a/Xsite Broker/Item.swift b/Xsite Broker/Item.swift
+deleted file mode 100644
+index d5a54fd..0000000
+--- a/Xsite Broker/Item.swift	
++++ /dev/null
+@@ -1,18 +0,0 @@
+-//
+-//  Item.swift
+-//  Xsite Broker
+-//
+-//  Created by Faraz on 18/10/2025.
+-//
+-
+-import Foundation
+-import SwiftData
+-
+-@Model
+-final class Item {
+-    var timestamp: Date
+-    
+-    init(timestamp: Date) {
+-        self.timestamp = timestamp
+-    }
+-}
+diff --git a/Xsite Broker/LanguageManager.swift b/Xsite Broker/LanguageManager.swift
+new file mode 100644
+index 0000000..76678cd
+--- /dev/null
++++ b/Xsite Broker/LanguageManager.swift	
+@@ -0,0 +1,30 @@
++//
++//  LanguageManager.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
++
++import SwiftUI
++
++final class LanguageManager: ObservableObject {
++    @Published var isArabic = false
++    var currentLocale: Locale { Locale(identifier: isArabic ? "ar" : "en") }
++    
++    func toggle() { withAnimation(.easeInOut) { isArabic.toggle() } }
++}
++
++func localized(_ key: String) -> String {
++    let ar: [String: String] = [
++        "Home": "الرئيسية", "Ready": "جاهز", "Off-Plan": "خطة مسبقة",
++        "Rent": "إيجار", "About": "عن الشركة",
++        "Meet Our Team": "فريقنا", "Register Interest": "سجل اهتمامك",
++        "Mortgage Calculator": "حاسبة الرهن", "RERA Index": "مؤشر رئـرا",
++        "Contact Us": "تواصل معنا",
++        "Ready Properties": "العقارات الجاهزة",
++        "Off-Plan Projects": "مشاريع على المخطط",
++        "Renting Options": "خيارات الإيجار"
++    ]
++    return ar[key] ?? key
++}
+diff --git a/Xsite Broker/Views.swift b/Xsite Broker/Views.swift
+new file mode 100644
+index 0000000..f8b71f0
+--- /dev/null
++++ b/Xsite Broker/Views.swift	
+@@ -0,0 +1,7 @@
++//
++//  Untitled.swift
++//  Xsite Broker
++//
++//  Created by Faraz on 19/10/2025.
++//
++
+diff --git a/Xsite Broker/XsiteBrokerApp.swift b/Xsite Broker/XsiteBrokerApp.swift
+new file mode 100644
+index 0000000..4086276
+--- /dev/null
++++ b/Xsite Broker/XsiteBrokerApp.swift	
+@@ -0,0 +1,40 @@
++import SwiftUI
++import Combine
++
++@main
++struct XsiteBrokerApp: App {
++    @StateObject private var lang = LanguageManager()
++    
++    var body: some Scene {
++        WindowGroup {
++            ContentView()
++                .environmentObject(lang)
++        }
++    }
++}
++@MainActor
++final class LanguageManager: ObservableObject {
++    @Published var isArabic: Bool = false
++    
++    var currentLocale: Locale {
++        Locale(identifier: isArabic ? "ar" : "en")
++    }
++    
++    func toggleLanguage() {
++        withAnimation(.spring()) {
++            isArabic.toggle()
++        }
++    }
++}
++import SwiftUI
++
++@main
++struct XsiteBrokerApp: App {
++    @StateObject private var lang = LanguageManager()
++    var body: some Scene {
++        WindowGroup {
++            ContentView()
++                .environmentObject(lang)
++        }
++    }
++}
+diff --git a/Xsite Broker/Xsite_BrokerApp.swift b/Xsite Broker/Xsite_BrokerApp.swift
+deleted file mode 100644
+index 5033b30..0000000
+--- a/Xsite Broker/Xsite_BrokerApp.swift	
++++ /dev/null
+@@ -1,32 +0,0 @@
+-//
+-//  Xsite_BrokerApp.swift
+-//  Xsite Broker
+-//
+-//  Created by Faraz on 18/10/2025.
+-//
+-
+-import SwiftUI
+-import SwiftData
+-
+-@main
+-struct Xsite_BrokerApp: App {
+-    var sharedModelContainer: ModelContainer = {
+-        let schema = Schema([
+-            Item.self,
+-        ])
+-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+-
+-        do {
+-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+-        } catch {
+-            fatalError("Could not create ModelContainer: \(error)")
+-        }
+-    }()
+-
+-    var body: some Scene {
+-        WindowGroup {
+-            ContentView()
+-        }
+-        .modelContainer(sharedModelContainer)
+-    }
+-}
+diff --git a/contentview.swift b/contentview.swift
+new file mode 100644
+index 0000000..c713f4f
+--- /dev/null
++++ b/contentview.swift
+@@ -0,0 +1,98 @@
++import SwiftUI
++
++struct ContentView: View {
++    @State private var selectedTab = 0
++    @AppStorage("isDarkMode") private var isDarkMode: Bool = true
++    @EnvironmentObject var lang: LanguageManager
++    
++    var body: some View {
++        TabView(selection: $selectedTab) {
++            HomeView
++                .tabItem { Label(localized("Home"), systemImage: "house.fill") }
++                .tag(0)
++            
++            ReadyView()
++                .tabItem { Label(localized("Ready"), systemImage: "building.2.fill") }
++                .tag(1)
++            
++            OffPlanView()
++                .tabItem { Label(localized("Off-Plan"), systemImage: "cube.fill") }
++                .tag(2)
++            
++            RentingView()
++                .tabItem { Label(localized("Rent"), systemImage: "key.fill") }
++                .tag(3)
++            
++            AboutView()
++                .tabItem { Label(localized("About"), systemImage: "info.circle.fill") }
++                .tag(4)
++        }
++        .preferredColorScheme(isDarkMode ? .dark : .light)
++        .environment(\.layoutDirection, lang.isArabic ? .rightToLeft : .leftToRight)
++        .overlay(alignment: .topTrailing) {
++            HStack {
++                Button {
++                    lang.toggleLanguage()
++                } label: {
++                    Image(systemName: "globe")
++                        .font(.title3)
++                        .padding(8)
++                        .background(.ultraThinMaterial, in: Circle())
++                }
++                
++                Button {
++                    isDarkMode.toggle()
++                } label: {
++                    Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
++                        .font(.title3)
++                        .padding(8)
++                        .background(.ultraThinMaterial, in: Circle())
++                }
++            }
++            .padding()
++        }
++    }
++}
++
++// simple localization helper
++func localized(_ key: String) -> String {
++    let ar: [String:String] = [
++        "Home":"الرئيسية","Ready":"جاهز","Off-Plan":"خطة مسبقة","Rent":"إيجار",
++        "About":"عن الشركة","Meet Our Team":"فريقنا","Register Interest":"سجل اهتمامك",
++        "Mortgage Calculator":"حاسبة الرهن","RERA Index":"مؤشر رئـرا","Contact Us":"تواصل معنا",
++        "Ready Properties":"العقارات الجاهزة","Off-Plan Projects":"مشاريع على المخطط",
++        "Renting Options":"خيارات الإيجار"
++    ]
++    return ar[key] ?? key
++}
++import SwiftUI
++
++struct ContentView: View {
++    @EnvironmentObject var lang: LanguageManager
++    @AppStorage("isDarkMode") private var isDarkMode = true
++    @State private var tab = 0
++    
++    var body: some View {
++        TabView(selection: $tab) {
++            HomeView().tabItem { Label(localized("Home"), systemImage: "house.fill") }.tag(0)
++            ReadyView().tabItem { Label(localized("Ready"), systemImage: "building.2.fill") }.tag(1)
++            OffPlanView().tabItem { Label(localized("Off-Plan"), systemImage: "cube.fill") }.tag(2)
++            RentingView().tabItem { Label(localized("Rent"), systemImage: "key.fill") }.tag(3)
++            AboutView().tabItem { Label(localized("About"), systemImage: "info.circle.fill") }.tag(4)
++        }
++        .preferredColorScheme(isDarkMode ? .dark : .light)
++        .environment(\.layoutDirection, lang.isArabic ? .rightToLeft : .leftToRight)
++        .overlay(alignment: .topTrailing) {
++            HStack {
++                Button { lang.toggle() } label: {
++                    Image(systemName: "globe")
++                        .padding(8).background(.ultraThinMaterial, in: Circle())
++                }
++                Button { isDarkMode.toggle() } label: {
++                    Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
++                        .padding(8).background(.ultraThinMaterial, in: Circle())
++                }
++            }.padding()
++        }
++    }
++}

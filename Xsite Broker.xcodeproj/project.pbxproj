@@ -7,20 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D01A7C9C2E9E6F2300BFE185 /* X509 in Frameworks */ = {isa = PBXBuildFile; productRef = D01A7C9B2E9E6F2300BFE185 /* X509 */; };
-		D01A7C9F2E9E6F3800BFE185 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = D01A7C9E2E9E6F3800BFE185 /* Algorithms */; };
-		D01A7CA22E9E6F5700BFE185 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D01A7CA12E9E6F5700BFE185 /* Alamofire */; };
-		D01A7CA42E9E6F5700BFE185 /* AlamofireConcurrency in Frameworks */ = {isa = PBXBuildFile; productRef = D01A7CA32E9E6F5700BFE185 /* AlamofireConcurrency */; };
-		D01A7CA72E9E81BF00BFE185 /* X509 in Frameworks */ = {isa = PBXBuildFile; productRef = D01A7CA62E9E81BF00BFE185 /* X509 */; };
-		D0A75DD92E9D8F86007C5683 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = D0A75DD82E9D8F86007C5683 /* GoogleMaps */; };
+		D0BA635A2EA56F5900BDFAA8 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = D0BA63592EA56F5900BDFAA8 /* TestPlan.xctestplan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D0E39D262E9D58340017810C /* Xsite Broker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xsite Broker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0B344A32EA403A600258696 /* Xsite Broker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Xsite Broker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0BA63592EA56F5900BDFAA8 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		D0E39D282E9D58340017810C /* Xsite Broker */ = {
+		D0B344A52EA403A600258696 /* Xsite Broker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "Xsite Broker";
 			sourceTree = "<group>";
@@ -28,34 +24,29 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D0E39D232E9D58340017810C /* Frameworks */ = {
+		D0B344A02EA403A600258696 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D01A7C9F2E9E6F3800BFE185 /* Algorithms in Frameworks */,
-				D01A7CA22E9E6F5700BFE185 /* Alamofire in Frameworks */,
-				D01A7CA72E9E81BF00BFE185 /* X509 in Frameworks */,
-				D01A7C9C2E9E6F2300BFE185 /* X509 in Frameworks */,
-				D0A75DD92E9D8F86007C5683 /* GoogleMaps in Frameworks */,
-				D01A7CA42E9E6F5700BFE185 /* AlamofireConcurrency in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D0E39D1D2E9D58340017810C = {
+		D0B3449A2EA403A600258696 = {
 			isa = PBXGroup;
 			children = (
-				D0E39D282E9D58340017810C /* Xsite Broker */,
-				D0E39D272E9D58340017810C /* Products */,
+				D0B344A52EA403A600258696 /* Xsite Broker */,
+				D0BA63592EA56F5900BDFAA8 /* TestPlan.xctestplan */,
+				D0B344A42EA403A600258696 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D0E39D272E9D58340017810C /* Products */ = {
+		D0B344A42EA403A600258696 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D0E39D262E9D58340017810C /* Xsite Broker.app */,
+				D0B344A32EA403A600258696 /* Xsite Broker.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,87 +54,76 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D0E39D252E9D58340017810C /* Xsite Broker */ = {
+		D0B344A22EA403A600258696 /* Xsite Broker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D0E39D312E9D58350017810C /* Build configuration list for PBXNativeTarget "Xsite Broker" */;
+			buildConfigurationList = D0B344B02EA403A700258696 /* Build configuration list for PBXNativeTarget "Xsite Broker" */;
 			buildPhases = (
-				D0E39D222E9D58340017810C /* Sources */,
-				D0E39D232E9D58340017810C /* Frameworks */,
-				D0E39D242E9D58340017810C /* Resources */,
+				D0B3449F2EA403A600258696 /* Sources */,
+				D0B344A02EA403A600258696 /* Frameworks */,
+				D0B344A12EA403A600258696 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				D0E39D282E9D58340017810C /* Xsite Broker */,
+				D0B344A52EA403A600258696 /* Xsite Broker */,
 			);
 			name = "Xsite Broker";
 			packageProductDependencies = (
-				D0A75DD82E9D8F86007C5683 /* GoogleMaps */,
-				D01A7C9B2E9E6F2300BFE185 /* X509 */,
-				D01A7C9E2E9E6F3800BFE185 /* Algorithms */,
-				D01A7CA12E9E6F5700BFE185 /* Alamofire */,
-				D01A7CA32E9E6F5700BFE185 /* AlamofireConcurrency */,
-				D01A7CA62E9E81BF00BFE185 /* X509 */,
 			);
 			productName = "Xsite Broker";
-			productReference = D0E39D262E9D58340017810C /* Xsite Broker.app */;
+			productReference = D0B344A32EA403A600258696 /* Xsite Broker.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D0E39D1E2E9D58340017810C /* Project object */ = {
+		D0B3449B2EA403A600258696 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					D0E39D252E9D58340017810C = {
+					D0B344A22EA403A600258696 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
 				};
 			};
-			buildConfigurationList = D0E39D212E9D58340017810C /* Build configuration list for PBXProject "Xsite Broker" */;
+			buildConfigurationList = D0B3449E2EA403A600258696 /* Build configuration list for PBXProject "Xsite Broker" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 				ar,
 			);
-			mainGroup = D0E39D1D2E9D58340017810C;
+			mainGroup = D0B3449A2EA403A600258696;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				D0A75DD72E9D8F86007C5683 /* XCLocalSwiftPackageReference "../../../Downloads/ios-maps-sdk-main" */,
-				D01A7C9D2E9E6F3800BFE185 /* XCLocalSwiftPackageReference "../../../Downloads/swift-algorithms-main" */,
-				D01A7CA02E9E6F5700BFE185 /* XCLocalSwiftPackageReference "../../../Downloads/Alamofire..-bug-explicit-concurrency-module" */,
-				D01A7CA52E9E81BF00BFE185 /* XCLocalSwiftPackageReference "../../../Downloads/apple-swift-main" */,
-				D01A7CA82E9E84AA00BFE185 /* XCLocalSwiftPackageReference "../../../Downloads/apple-swift-numerics-main" */,
-			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = D0E39D272E9D58340017810C /* Products */;
+			productRefGroup = D0B344A42EA403A600258696 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D0E39D252E9D58340017810C /* Xsite Broker */,
+				D0B344A22EA403A600258696 /* Xsite Broker */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D0E39D242E9D58340017810C /* Resources */ = {
+		D0B344A12EA403A600258696 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0BA635A2EA56F5900BDFAA8 /* TestPlan.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D0E39D222E9D58340017810C /* Sources */ = {
+		D0B3449F2EA403A600258696 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -153,7 +133,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		D0E39D2F2E9D58350017810C /* Debug */ = {
+		D0B344AE2EA403A700258696 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -213,13 +193,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				n = m;
 			};
 			name = Debug;
 		};
-		D0E39D302E9D58350017810C /* Release */ = {
+		D0B344AF2EA403A700258696 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -272,13 +250,11 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
-				n = m;
 			};
 			name = Release;
 		};
-		D0E39D322E9D58350017810C /* Debug */ = {
+		D0B344B12EA403A700258696 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -288,8 +264,7 @@
 				DEVELOPMENT_TEAM = N2TS645F4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Xsite-Broker-Info.plist \n";
-				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "Xsite Broker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -301,7 +276,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shahapp.Xsite.Xsite-Broker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -310,11 +284,11 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		D0E39D332E9D58350017810C /* Release */ = {
+		D0B344B22EA403A700258696 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -324,8 +298,7 @@
 				DEVELOPMENT_TEAM = N2TS645F4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Xsite-Broker-Info.plist \n";
-				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "Xsite Broker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -337,7 +310,6 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shahapp.Xsite.Xsite-Broker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -346,82 +318,32 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D0E39D212E9D58340017810C /* Build configuration list for PBXProject "Xsite Broker" */ = {
+		D0B3449E2EA403A600258696 /* Build configuration list for PBXProject "Xsite Broker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D0E39D2F2E9D58350017810C /* Debug */,
-				D0E39D302E9D58350017810C /* Release */,
+				D0B344AE2EA403A700258696 /* Debug */,
+				D0B344AF2EA403A700258696 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0E39D312E9D58350017810C /* Build configuration list for PBXNativeTarget "Xsite Broker" */ = {
+		D0B344B02EA403A700258696 /* Build configuration list for PBXNativeTarget "Xsite Broker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D0E39D322E9D58350017810C /* Debug */,
-				D0E39D332E9D58350017810C /* Release */,
+				D0B344B12EA403A700258696 /* Debug */,
+				D0B344B22EA403A700258696 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		D01A7C9D2E9E6F3800BFE185 /* XCLocalSwiftPackageReference "../../../Downloads/swift-algorithms-main" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../Downloads/swift-algorithms-main";
-		};
-		D01A7CA02E9E6F5700BFE185 /* XCLocalSwiftPackageReference "../../../Downloads/Alamofire..-bug-explicit-concurrency-module" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../Downloads/Alamofire..-bug-explicit-concurrency-module";
-		};
-		D01A7CA52E9E81BF00BFE185 /* XCLocalSwiftPackageReference "../../../Downloads/apple-swift-main" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../Downloads/apple-swift-main";
-		};
-		D01A7CA82E9E84AA00BFE185 /* XCLocalSwiftPackageReference "../../../Downloads/apple-swift-numerics-main" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../Downloads/apple-swift-numerics-main";
-		};
-		D0A75DD72E9D8F86007C5683 /* XCLocalSwiftPackageReference "../../../Downloads/ios-maps-sdk-main" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../Downloads/ios-maps-sdk-main";
-		};
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D01A7C9B2E9E6F2300BFE185 /* X509 */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = X509;
-		};
-		D01A7C9E2E9E6F3800BFE185 /* Algorithms */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Algorithms;
-		};
-		D01A7CA12E9E6F5700BFE185 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Alamofire;
-		};
-		D01A7CA32E9E6F5700BFE185 /* AlamofireConcurrency */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AlamofireConcurrency;
-		};
-		D01A7CA62E9E81BF00BFE185 /* X509 */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = X509;
-		};
-		D0A75DD82E9D8F86007C5683 /* GoogleMaps */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = GoogleMaps;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = D0E39D1E2E9D58340017810C /* Project object */;
+	rootObject = D0B3449B2EA403A600258696 /* Project object */;
 }
