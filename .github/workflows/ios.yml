@@ -1,0 +1,45 @@
+name: iOS Build & Auto IPA Upload
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  schedule:
+    - cron: '0 3 * * *'  # build every day at 3 AM UTC
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🧰 Set up latest Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest
+
+      - name: 🛠️ Build (Simulator)
+        run: |
+          xcodebuild clean build \
+            -project "Xsite Broker.xcodeproj" \
+            -scheme "Xsite Broker" \
+            -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+
+      - name: 📦 Archive (for App Store)
+        run: |
+          mkdir -p build
+          xcodebuild archive \
+            -project "Xsite Broker.xcodeproj" \
+            -scheme "Xsite Broker" \
+            -archivePath "build/XsiteBroker.xcarchive" \
+            -destination generic/platform=iOS
+
+      - name: 📤 Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: XsiteBroker-IPA
+          path: build/*.ipa
+

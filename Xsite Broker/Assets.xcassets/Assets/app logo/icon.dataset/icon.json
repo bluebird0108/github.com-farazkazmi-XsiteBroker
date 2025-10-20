@@ -1,0 +1,100 @@
+{
+  "fill-specializations" : [
+    {
+      "value" : "automatic"
+    },
+    {
+      "appearance" : "light",
+      "value" : "automatic"
+    },
+    {
+      "idiom" : "square",
+      "value" : "automatic"
+    }
+  ],
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "glass-specializations" : [
+            {
+              "value" : false
+            },
+            {
+              "appearance" : "light",
+              "value" : false
+            },
+            {
+              "idiom" : "square",
+              "value" : false
+            }
+          ],
+          "hidden" : false,
+          "image-name" : "Icon-App-.png",
+          "name" : "Icon-App-1024pt1x",
+          "opacity-specializations" : [
+            {
+              "appearance" : "light",
+              "value" : 1
+            },
+            {
+              "idiom" : "square",
+              "value" : 1
+            }
+          ],
+          "position-specializations" : [
+            {
+              "value" : {
+                "scale" : 1,
+                "translation-in-points" : [
+                  -8.6953125,
+                  -11.9375
+                ]
+              }
+            },
+            {
+              "appearance" : "light",
+              "value" : {
+                "scale" : 1,
+                "translation-in-points" : [
+                  -8.6953125,
+                  -11.9375
+                ]
+              }
+            },
+            {
+              "appearance" : "light",
+              "idiom" : "square",
+              "value" : {
+                "scale" : 1,
+                "translation-in-points" : [
+                  0,
+                  0
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "name" : "IOS",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : [
+      "iOS",
+      "macOS"
+    ]
+  }
+}
