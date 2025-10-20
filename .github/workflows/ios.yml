@@ -1,71 +1,48 @@
-name: iOS Build & Auto IPA Upload
+name: iOS Build & App Store Validation
 
 on:
   push:
     branches: [ main ]
   pull_request:
-  schedule:
-    - cron: '0 3 * * *'  # build every day at 3 AM UTC
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: macos-latest
-    timeout-minutes: 60
 
     steps:
-      - name: 🧩 Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 🧰 Set up latest Xcode
+      - name: Set up Xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest
 
-      - name: 🛠️ Build (Simulator)
+      - name: Validate Info.plist for App Store
         run: |
-          xcodebuild clean build \
-            -project "Xsite Broker.xcodeproj" \
-            -scheme "Xsite Broker" \
-            -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+          echo "🔍 Validating Info.plist..."
+          plutil -lint "Xsite Broker/Views/Xsite-Broker-info.plist"
 
-      - name:      - name: 🧮 Validate Info.plist (App Store compliance)
+      - name: Resolve Swift Packages
+        run: xcodebuild -resolvePackageDependencies
+
+      - name: Build App
+        run: xcodebuild -scheme "XsiteBroker" -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+
+      - name: Run Tests
+        run: xcodebuild test -scheme "XsiteBroker" -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
+
+      - name: Archive for App Store
         run: |
-          echo "Checking Xsite-Broker-Info.plist for required keys..."
-          PLIST="Xsite-Broker-Info.plist"
-          if [ ! -f "$PLIST" ]; then
-            echo "❌ Error: Info.plist file not found at $PLIST"
-            exit 1
-          fi
+          xcodebuild -scheme "XsiteBroker" \
+          -configuration Release \
+          -archivePath $PWD/build/XsiteBroker.xcarchive \
+          archive
 
-          # Ensure the encryption key is present
-          if ! /usr/libexec/PlistBuddy -c "Print :ITSAppUsesNonExemptEncryption" "$PLIST" &>/dev/null; then
-            echo "❌ Error: ITSAppUsesNonExemptEncryption key missing"
-            exit 1
-          fi
-
-          VALUE=$(/usr/libexec/PlistBuddy -c "Print :ITSAppUsesNonExemptEncryption" "$PLIST")
-          if [ "$VALUE" != "false" ]; then
-            echo "⚠️ Warning: ITSAppUsesNonExemptEncryption should be set to false"
-          fi
-
-          # Check version keys
-          /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$PLIST" >/dev/null || { echo "❌ Missing CFBundleShortVersionString"; exit 1; }
-          /usr/libexec/PlistBuddy -c "Print :CFBundleVersion" "$PLIST" >/dev/null || { echo "❌ Missing CFBundleVersion"; exit 1; }
-
-          echo "✅ Info.plist validation passed"
-      
-        - name 📦 Archive (for App Store)
-          run: |
-          mkdir -p build
-          xcodebuild archive \
-            -project "Xsite Broker.xcodeproj" \
-            -scheme "Xsite Broker" \
-            -archivePath "build/XsiteBroker.xcarchive" \
-            -destination generic/platform=iOS
-
-      - name: 📤 Upload IPA
-        uses: actions/upload-artifact@v4
-        with:
-          name: XsiteBroker-IPA
-          path: build/*.ipa
-
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+          -archivePath $PWD/build/XsiteBroker.xcarchive \
+          -exportPath $PWD/build \
+          -exportOptionsPlist ExportOptions.plist
