@@ -28,8 +28,34 @@ jobs:
             -scheme "Xsite Broker" \
             -destination 'platform=iOS Simulator,name=iPhone 17 Pro'
 
-      - name: 📦 Archive (for App Store)
+      - name:      - name: 🧮 Validate Info.plist (App Store compliance)
         run: |
+          echo "Checking Xsite-Broker-Info.plist for required keys..."
+          PLIST="Xsite-Broker-Info.plist"
+          if [ ! -f "$PLIST" ]; then
+            echo "❌ Error: Info.plist file not found at $PLIST"
+            exit 1
+          fi
+
+          # Ensure the encryption key is present
+          if ! /usr/libexec/PlistBuddy -c "Print :ITSAppUsesNonExemptEncryption" "$PLIST" &>/dev/null; then
+            echo "❌ Error: ITSAppUsesNonExemptEncryption key missing"
+            exit 1
+          fi
+
+          VALUE=$(/usr/libexec/PlistBuddy -c "Print :ITSAppUsesNonExemptEncryption" "$PLIST")
+          if [ "$VALUE" != "false" ]; then
+            echo "⚠️ Warning: ITSAppUsesNonExemptEncryption should be set to false"
+          fi
+
+          # Check version keys
+          /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$PLIST" >/dev/null || { echo "❌ Missing CFBundleShortVersionString"; exit 1; }
+          /usr/libexec/PlistBuddy -c "Print :CFBundleVersion" "$PLIST" >/dev/null || { echo "❌ Missing CFBundleVersion"; exit 1; }
+
+          echo "✅ Info.plist validation passed"
+      
+        - name 📦 Archive (for App Store)
+          run: |
           mkdir -p build
           xcodebuild archive \
             -project "Xsite Broker.xcodeproj" \
