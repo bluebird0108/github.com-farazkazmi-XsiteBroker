@@ -21,7 +21,7 @@ jobs:
 
       - name: Validate Info.plist for App Store
         run: |
-          echo "🔍 Validating Info.plist"
+          echo "🔍 Validating Info.plist.."
           plutil -lint "XsiteBroker/Xsitebroker.info.plist"
 
       - name: Resolve Swift Packages
