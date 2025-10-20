@@ -20,9 +20,9 @@ jobs:
           xcode-version: latest
 
       - name: Validate Info.plist for App Store
-        run: |
-          echo "🔍 Validating Info.plist.."
-          plutil -lint "XsiteBroker/Xsitebroker.info.plist"
+      run: |
+      echo "🔍 Validating Info.plist.."
+      plutil -lint "Xsite Broker/Xsite-Broker-info.plist"
 
       - name: Resolve Swift Packages
         run: xcodebuild -resolvePackageDependencies
